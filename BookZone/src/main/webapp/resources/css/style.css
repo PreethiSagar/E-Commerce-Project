@@ -1,0 +1,115 @@
+.shiftLeft
+{
+	float:left;
+}
+.shiftRight
+{
+	float:right;
+}
+.paddZero
+{
+	padding:0px !important;
+}
+.marginZero
+{
+	margin:0px !important;
+}
+.noBorder
+{
+	border: 0px !important;
+}
+.spaces5
+{
+	margin-top:5px;
+}
+.spaces10
+{
+	margin-top:10px;
+}
+.spaces15
+{
+	margin-top:15px;
+}
+.spaces20
+{
+	margin-top:20px;
+}
+.bottom5
+{
+	margin-bottom:5px;
+}
+.bottom10
+{
+	margin-bottom:10px;
+}
+.bottom15
+{
+	margin-bottom:15px;
+}
+.bottom20
+{
+	margin-bottom:20px;
+}
+.left0
+{
+	margin-left: 0px !important;
+}
+.left5
+{
+	margin-left: 5px;
+}
+.left10
+{
+	margin-left: 10px;
+}
+.right0
+{
+	margin-right: 0px !important;
+}
+.right5
+{
+	margin-right: 5px;
+}
+.right10
+{
+	margin-right: 10px;
+}
+.clear
+{
+	clear:both;
+}
+.sliderImg
+{
+	width: 1250px !important;
+	height:300px !important;
+}
+.carousel-control.left, .carousel-control.right
+{
+	background-image: none !important;
+}
+.sliderContentStyle
+{
+    color: #E48E27 !important;
+    font-size: 23px !important;
+}
+.sliderHeadContentStyle
+{
+    color: #E48E27 !important;
+    font-size: 25px !important;
+    font-weight: bold !important;
+}
+.bookImageStyle
+{
+	width: 250px;
+}
+.bookHeadContentStyle
+{
+    color: #E48E27 !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+.bookContentStyle
+{
+    color: #E48E27 !important;
+    font-size: 16px !important;
+}
