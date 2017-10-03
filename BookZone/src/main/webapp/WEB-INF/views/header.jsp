@@ -35,7 +35,7 @@
 				<ul class="nav navbar-right navbar-nav right0">
 					<li><a href="#">BookZone</a></li>
 					<li><a href="#">Category</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;My Cart</a></li>
+					<li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;My Cart</a></li>
 					<li><a href="#">Sign In</a></li>
 					<li><a href="#">Sign Up</a></li>
 				</ul>

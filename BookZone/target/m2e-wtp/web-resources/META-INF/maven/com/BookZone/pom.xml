@@ -8,17 +8,30 @@
   <name>BookZone Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-  	<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+	<!-- Back End Front End Connection - Start -->
 	<dependency>
-	    <groupId>jstl</groupId>
+		<groupId>com</groupId>
+		<artifactId>BookZoneBackEnd</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>  
+	<!-- Back End Front End Connection - End -->
+  	<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
 	    <artifactId>jstl</artifactId>
 	    <version>1.2</version>
-	</dependency>  
+	</dependency>
 	<!-- Spring Dependencies - Start -->
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-core</artifactId>
+	    <version>4.3.9.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-web</artifactId>
 	    <version>4.3.9.RELEASE</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
@@ -33,12 +46,6 @@
 	    <artifactId>spring-context</artifactId>
 	    <version>4.3.9.RELEASE</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-web</artifactId>
-	    <version>4.3.9.RELEASE</version>
-	</dependency>	
 	<!-- Spring Dependencies - End -->
     <dependency>
       <groupId>junit</groupId>
