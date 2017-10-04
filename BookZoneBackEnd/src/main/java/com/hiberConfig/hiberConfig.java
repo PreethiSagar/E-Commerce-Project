@@ -30,7 +30,7 @@ public class hiberConfig
 		System.out.println("Hibernate initiated...");
 		DriverManagerDataSource dt = new DriverManagerDataSource();
 		dt.setDriverClassName("org.h2.Driver");
-		dt.setUrl("jdbc:h2:~/bookzone");
+		dt.setUrl("jdbc:h2:tcp://localhost/~/bookzone");
 		dt.setUsername("sa");
 		dt.setPassword("");
 		System.out.println("Connection established...");
@@ -49,6 +49,7 @@ public class hiberConfig
 		LocalSessionFactoryBuilder lsfb = new LocalSessionFactoryBuilder(getH2());
 		lsfb.addProperties(hp);
 		lsfb.addAnnotatedClass(User.class);
+		lsfb.addAnnotatedClass(Category.class);
 		SessionFactory sessionFactory = lsfb.buildSessionFactory();
 		System.out.println("Session Factory Object Created...");
 		return sessionFactory;

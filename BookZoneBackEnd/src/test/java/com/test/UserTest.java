@@ -9,8 +9,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.hiberConfig.hiberConfig;
 
-public class UserTest {
-	
+public class UserTest 
+{	
 	@BeforeClass
 	public static void initialize()
 	{
