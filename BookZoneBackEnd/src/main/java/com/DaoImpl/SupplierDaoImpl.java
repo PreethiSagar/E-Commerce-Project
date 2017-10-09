@@ -1,6 +1,7 @@
 package com.DaoImpl;
 
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -8,21 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.Dao.CategoryDao;
+import com.Dao.SupplierDao;
 import com.model.Category;
+import com.model.Supplier;
 
-@Repository("categoryDAO")
-public class CategoryDaoImpl implements CategoryDao
+@Repository("supplierDAO")
+public class SupplierDaoImpl implements SupplierDao 
 {
 	@Autowired
 	SessionFactory sessionFactory;
-
+	
 	@Transactional
-	public boolean addCategory(Category category) 
+	public boolean addSupplier(Supplier supplier) 
 	{
 		try
 		{
-			sessionFactory.getCurrentSession().saveOrUpdate(category);
+			sessionFactory.getCurrentSession().saveOrUpdate(supplier);
 			return true;
 		}
 		catch(Exception e)
@@ -31,21 +33,21 @@ public class CategoryDaoImpl implements CategoryDao
 		}
 	}
 
-	public List<Category> retrieveCategory() 
+	public List<Supplier> retrieveSupplier() 
 	{
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Category");
-		List<Category> listCategory = query.list();
+		Query query = session.createQuery("from Supplier");
+		List<Supplier> listSupplier = query.list();
 		session.close();
-		return listCategory;
+		return listSupplier;
 	}
 
 	@Transactional
-	public boolean deleteCategory(Category category) 
+	public boolean deleteSupplier(Supplier supplier) 
 	{
 		try
 		{
-			sessionFactory.getCurrentSession().delete(category);
+			sessionFactory.getCurrentSession().delete(supplier);
 			return true;
 		}
 		catch(Exception e)
@@ -54,20 +56,20 @@ public class CategoryDaoImpl implements CategoryDao
 		}
 	}
 
-	public Category getCategory(int catId) 
+	public Supplier getSupplier(int supplierId) 
 	{
 		Session session = sessionFactory.openSession();
-		Category category = (Category)session.get(Category.class,catId);
+		Supplier supplier = (Supplier)session.get(Supplier.class,supplierId);
 		session.close();
-		return category;
+		return supplier;
 	}
 
 	@Transactional
-	public boolean updateCategory(Category category) 
+	public boolean updateSupplier(Supplier supplier) 
 	{
 		try
 		{
-			sessionFactory.getCurrentSession().saveOrUpdate(category);
+			sessionFactory.getCurrentSession().saveOrUpdate(supplier);
 			return true;
 		}
 		catch(Exception e)

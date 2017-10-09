@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -50,6 +50,7 @@ public class hiberConfig
 		lsfb.addProperties(hp);
 		lsfb.addAnnotatedClass(User.class);
 		lsfb.addAnnotatedClass(Category.class);
+		lsfb.addAnnotatedClass(Supplier.class);
 		SessionFactory sessionFactory = lsfb.buildSessionFactory();
 		System.out.println("Session Factory Object Created...");
 		return sessionFactory;
