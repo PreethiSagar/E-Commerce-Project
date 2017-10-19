@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <jsp:include page="header.jsp"></jsp:include>
 <div class="clear spaces10"></div>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
 	<div id="bookZoneCarousel" class="carousel silde" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#bookZoneCarousel" data-slide-to="0" class="active"></li>

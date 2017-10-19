@@ -3,6 +3,7 @@ package com.model;
 import java.io.Serializable;
 import javax.persistence.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 @Entity
@@ -11,14 +12,28 @@ public class User implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue
+	private int userid;
 	private String email;
 	private String name;
+	private String username;
 	private String phone;
 	private String address;
 	private String password;
 	private String role;
 	private String country;
+	private String userimage;
 	private boolean enabled;
+	
+	@Transient
+	MultipartFile uimage;	
+	
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -27,6 +42,12 @@ public class User implements Serializable
 	}
 	public String getName() {
 		return name;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -61,10 +82,22 @@ public class User implements Serializable
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	public String getUserimage() {
+		return userimage;
+	}
+	public void setUserimage(String userimage) {
+		this.userimage = userimage;
+	}
 	public boolean isEnabled() {
 		return enabled;
 	}
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	public MultipartFile getUimage() {
+		return uimage;
+	}
+	public void setUimage(MultipartFile uimage) {
+		this.uimage = uimage;
 	}
 }

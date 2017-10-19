@@ -78,6 +78,10 @@
 {
 	clear:both;
 }
+.containerMinHeight
+{
+	min-height: 455px !important;
+}
 .sliderImg
 {
 	width: 1250px !important;
@@ -112,4 +116,35 @@
 {
     color: #E48E27 !important;
     font-size: 16px !important;
+}
+.table>tbody>tr.tableHead>th
+{
+	background-color: rgba(60, 92, 119, 0.65) !important;
+}
+.table>tbody>tr.tableContent>td
+{
+	background-color: rgba(60, 92, 119, 0.55) !important;
+}
+.iconStyle
+{
+	width:20px;
+	height:20px;
+}
+.btn-primary 
+{
+    color: #FFFFFF !important;
+    background-color: #CF9018 !important;
+    border-color: #CF9018 !important;
+    vertical-align: middle !important;
+    border-radius: 6px !important;
+    width: auto !important;
+}
+.formButtonTop
+{
+	margin-top:20px;
+}
+.formTitle
+{
+	color: #E48E27 !important;
+    font-size: 16px;
 }
