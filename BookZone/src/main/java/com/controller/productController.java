@@ -38,6 +38,8 @@ public class productController
 	@RequestMapping(value="/product", method=RequestMethod.GET)
 	public String showProduct(Model m)
 	{
+		String pageTitle = "BookZone - Product";
+		m.addAttribute("pageTitle", pageTitle);
 		Product product = new Product();
 		m.addAttribute(product);
 		List<Product> listProduct = productDao.retrieveProduct();
@@ -72,6 +74,8 @@ public class productController
 	@RequestMapping(value="AddProduct", method=RequestMethod.POST)
 	public String addProduct(@ModelAttribute("product")Product product, @RequestParam("pimage")MultipartFile fileDetail, Model m)
 	{
+		String pageTitle = "BookZone - Product";
+		m.addAttribute("pageTitle", pageTitle);
 		productDao.addProduct(product);
 		String path = "D:\\EclipseProjects\\BookZone\\src\\main\\webapp\\resources\\images\\products\\";
 		String totalFilePath = path+String.valueOf(product.getProductId())+".jpg";
@@ -100,13 +104,78 @@ public class productController
 		return "product";
 	}
 	
+	@RequestMapping(value="updateProduct/{productId}", method=RequestMethod.GET)
+	public String updateProduct(@PathVariable("productId")int productId, Model m)
+	{
+		String pageTitle = "BookZone - Product Update";
+		m.addAttribute("pageTitle", pageTitle);
+		Product product = productDao.getProduct(productId);
+		m.addAttribute(product);
+		List<Product> listProduct = productDao.retrieveProduct();
+		m.addAttribute("productList",listProduct);
+		m.addAttribute("categoryList",this.getCategories());
+		m.addAttribute("supplierList",this.getSuppliers());
+		return "updateProduct";
+	}
+	
+	@RequestMapping(value="UpdateProduct", method=RequestMethod.POST)
+	public String updateMyProduct(@ModelAttribute("product")Product product, @RequestParam("pimage")MultipartFile fileDetail, Model m)
+	{
+		String pageTitle = "BookZone - Product";
+		m.addAttribute("pageTitle", pageTitle);
+		productDao.updateProduct(product);
+		Product product1 = new Product();
+		m.addAttribute(product1);
+		String path = "D:\\EclipseProjects\\BookZone\\src\\main\\webapp\\resources\\images\\products\\";
+		String totalFilePath = path+String.valueOf(product.getProductId())+".jpg";
+		File productImage = new File(totalFilePath);
+		if(!fileDetail.isEmpty())
+		{
+			try
+			{
+				byte fileBuffer[] = fileDetail.getBytes();
+				FileOutputStream fos = new FileOutputStream(productImage);
+				BufferedOutputStream bs = new BufferedOutputStream(fos);
+				bs.write(fileBuffer);;
+				bs.close();
+			}
+			catch(Exception e)
+			{
+				m.addAttribute("error", e.getMessage());
+			}
+		}
+		else
+		{
+			m.addAttribute("error", "Problem in file uploading.");
+		}
+		List<Product> listProduct = productDao.retrieveProduct();
+		m.addAttribute("productList",listProduct);
+		m.addAttribute("categoryList",this.getCategories());
+		m.addAttribute("supplierList",this.getSuppliers());
+		return "product";
+	}
+	
 	@RequestMapping(value="/deleteProduct/{productId}", method=RequestMethod.GET)
 	public String deleteProduct(@PathVariable("productId")int productId, Model m)
 	{
+		String pageTitle = "BookZone - Product";
+		m.addAttribute("pageTitle", pageTitle);
 		Product product = productDao.getProduct(productId);
 		productDao.deleteProduct(product);
 		List<Product> listProduct = productDao.retrieveProduct();
 		m.addAttribute("productList",listProduct);
+		Product product1 = new Product();
+		m.addAttribute(product1);
 		return "product";
+	}
+	
+	@RequestMapping(value="/viewProduct/{productId}", method=RequestMethod.GET)
+	public String viewProduct(@PathVariable("productId")int productId, Model m)
+	{
+		String pageTitle = "BookZone - Product detail";
+		m.addAttribute("pageTitle", pageTitle);
+		Product product = productDao.getProduct(productId);
+		m.addAttribute(product);
+		return "productDetail";
 	}
 }

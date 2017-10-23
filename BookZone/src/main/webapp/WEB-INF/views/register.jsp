@@ -7,7 +7,11 @@
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
 
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 addProductForm">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<img src="${pageContext.request.contextPath}/resources/images/banner2.jpg" class="img-rounded img-responsive bannerImgStyle" />
+	</div>
+	<div class="clear spaces10"></div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 registerContent">
 		<form:form action="AddUser" modelAttribute="user" enctype="multipart/form-data">
 			<div class="clear spaces10"></div>
 				<b class="formTitle">Create Account</b>
@@ -50,15 +54,18 @@
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
 				<div class="form-group">	
-				<form:input type="hidden" path="enabled" value="TRUE" />
-				<form:input type="hidden" path="role" value="ROLE_USER" />
+					<form:input type="hidden" path="enabled" value="TRUE" />
+					<form:input type="hidden" path="role" value="ROLE_USER" />
 				    <input type="submit" value="Sign Up" class="btn btn-primary" />
 				</div>
 			</div>
 			<div class="clear spaces5"></div>
 		</form:form>
 	</div>
-	<div class="clear spaces10"></div>	
+	<div class="clear spaces10"></div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<img src="${pageContext.request.contextPath}/resources/images/banner1.png" class="img-rounded img-responsive bannerImgStyle" />
+	</div>	
 
 </div>
 <div class="clear spaces10"></div>

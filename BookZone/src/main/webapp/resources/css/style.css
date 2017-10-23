@@ -146,5 +146,56 @@
 .formTitle
 {
 	color: #E48E27 !important;
-    font-size: 16px;
+    font-size: 20px;
+}
+.panel-default 
+{
+    border-color: #3C5C77 !important;
+}
+.panel-default>.panel-heading 
+{
+    background-color: #3C5C77 !important;
+    border-color: #3C5C77 !important;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+{
+	color: #3C5C77 !important;
+}
+.nav-tabs>li>a
+{
+	color: #FFFFFF !important;
+}
+.nav-tabs>li>a:hover, .nav-tabs>li>a:focus 
+{
+    background-color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+    color: #3C5C77 !important;
+}
+.updateFormStyle
+{
+	border: 1px solid #3C5C77;
+	border-radius: 5px;
+}
+.bannerImgStyle
+{
+	width:1300px !important;
+	height:160px !important;
+}
+.addImgStyle
+{
+	width:400px !important;
+	height:300px !important;
+}
+.loginContent
+{
+	background-color: #FFFFFF;
+    border: 3px solid rgba(60, 92, 119, 0.65);
+    border-radius: 5px;
+    height: 300px;
+}
+.registerContent
+{
+	background-color: #FFFFFF;
+    border: 3px solid rgba(60, 92, 119, 0.65);
+    border-radius: 5px;
 }

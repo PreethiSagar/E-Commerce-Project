@@ -20,6 +20,8 @@ public class categoryController
 	@RequestMapping(value="/category", method=RequestMethod.GET)
 	public String showCategory(Model m)
 	{
+		String pageTitle = "BookZone - Category";
+		m.addAttribute("pageTitle", pageTitle);
 		Category category = new Category();
 		m.addAttribute(category);
 		List<Category> listCategory = categoryDao.retrieveCategory();
@@ -30,15 +32,21 @@ public class categoryController
 	@RequestMapping(value="AddCategory", method=RequestMethod.POST)
 	public String addCategory(@ModelAttribute("category")Category category, Model m)
 	{
+		String pageTitle = "BookZone - Category";
+		m.addAttribute("pageTitle", pageTitle);
 		categoryDao.addCategory(category);
 		List<Category> listCategory = categoryDao.retrieveCategory();
 		m.addAttribute("categoryList",listCategory);
+		Category category1 = new Category();
+		m.addAttribute(category1);
 		return "category";
 	}
 	
 	@RequestMapping(value="updateCategory/{catId}", method=RequestMethod.GET)
 	public String updateCategory(@PathVariable("catId")int catId, Model m)
 	{
+		String pageTitle = "BookZone - Category Update";
+		m.addAttribute("pageTitle", pageTitle);
 		Category category = categoryDao.getCategory(catId);
 		m.addAttribute(category);
 		List<Category> listCategory = categoryDao.retrieveCategory();
@@ -49,6 +57,8 @@ public class categoryController
 	@RequestMapping(value="UpdateCategory", method=RequestMethod.POST)
 	public String updateMyCategory(@ModelAttribute("category")Category category, Model m)
 	{
+		String pageTitle = "BookZone - Category";
+		m.addAttribute("pageTitle", pageTitle);
 		categoryDao.updateCategory(category);
 		Category category1 = new Category();
 		m.addAttribute(category1);
@@ -60,10 +70,24 @@ public class categoryController
 	@RequestMapping(value="/deleteCategory/{catId}", method=RequestMethod.GET)
 	public String deleteCategory(@PathVariable("catId")int catId, Model m)
 	{
+		String pageTitle = "BookZone - Category";
+		m.addAttribute("pageTitle", pageTitle);
 		Category category = categoryDao.getCategory(catId);
 		categoryDao.deleteCategory(category);
 		List<Category> listCategory = categoryDao.retrieveCategory();
 		m.addAttribute("categoryList",listCategory);
+		Category category1 = new Category();
+		m.addAttribute(category1);
 		return "category";
+	}	
+	
+	@RequestMapping(value="/viewCategory/{catId}", method=RequestMethod.GET)
+	public String viewCategory(@PathVariable("catId")int catId, Model m)
+	{
+		String pageTitle = "BookZone - Category Detail";
+		m.addAttribute("pageTitle", pageTitle);
+		Category category = categoryDao.getCategory(catId);
+		m.addAttribute(category);
+		return "categoryDetail";
 	}
 }

@@ -5,29 +5,35 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
-	<form:form action="${pageContext.request.contextPath}/UpdateCategory" modelAttribute="category" method="post">
+	<form:form action="${pageContext.request.contextPath}/UpdateSupplier" modelAttribute="supplier" method="post">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
 			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 updateFormStyle">
 				<div class="clear spaces10"></div>
-				<b class="formTitle" align="center">Update Category</b>
+				<b class="formTitle" align="center">Update Supplier</b>
 				<div class="clear spaces10"></div>
 				<div class="form-group">
-					<label>Category Id:</label>
-					<form:input path="catId" class="form-control" placeholder="Category Id" />
+					<label>Supplier Id:</label>
+					<form:input path="supplierId" class="form-control" placeholder="Supplier Id" />
 				</div>
 				<div class="form-group">
-					<label>Category Name:</label>
-					<form:input path="catName" class="form-control" placeholder="Category Name" />
+					<label>Supplier Name:</label>
+					<form:input path="supplierName" class="form-control" placeholder="Supplier Name" />
 				</div>
 				<div class="form-group">
-					<label>Category Description:</label>
-					<form:textarea path="catDesc" class="form-control" placeholder="Category Description" />
+					<label>Supplier Address:</label>
+					<form:input path="supplierAddress" class="form-control" placeholder="Supplier Address" />
 				</div>
-				<div class="form-group" align="center">	
-					<input type="submit" value="Update Category" class="btn btn-primary" />
+				<div class="form-group">
+					<label>Supplier Email:</label>
+					<form:input path="supplierEmail" class="form-control" placeholder="Supplier Email" />
 				</div>
-				<div class="clear spaces10"></div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
+					<div class="form-group">	
+					    <input type="submit" value="Update Supplier" class="btn btn-primary" />
+					</div>
+				</div>
+				<div class="clear spaces5"></div>
 			</div>
 			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
 		</div>
