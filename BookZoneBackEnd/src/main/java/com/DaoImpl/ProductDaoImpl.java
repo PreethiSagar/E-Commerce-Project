@@ -77,4 +77,18 @@ public class ProductDaoImpl implements ProductDao
 		session.close();
 		return product;
 	}
+	
+	@Transactional
+	public boolean updateProductImg(Product product) 
+	{
+		try
+		{
+			sessionFactory.getCurrentSession().saveOrUpdate(product);
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+	}
 }

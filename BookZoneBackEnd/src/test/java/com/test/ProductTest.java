@@ -46,13 +46,14 @@ public class ProductTest
 	public void updateProductTest()
 	{
 		Product product = new Product();
-		product.setProductId(1);
-		product.setProductName("Five Point Someone");
-		product.setProductDesc("Story Book");
-		product.setPrice(175);
+		product.setProductId(14);
+		product.setProductName("Test Product Image7");
+		product.setProductDesc("Test Product Image7 Description");
+		product.setPrice(250);
 		product.setStock(10);
 		product.setCatId(1001);
 		product.setSupplierId(102);
+		product.setImageName("14.jpg");
 		assertTrue(productDAO.updateProduct(product));
 	}
 	
@@ -84,6 +85,7 @@ public class ProductTest
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void getCategoryTest()
 	{
