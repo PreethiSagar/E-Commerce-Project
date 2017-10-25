@@ -16,42 +16,42 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="resources/images/slider1.png" class="img-rounded img-responsive center-block sliderImg" />
+				<img src="${pageContext.request.contextPath}/resources/images/slider1.png" class="img-rounded img-responsive center-block sliderImg" />
 				<div class="carousel-caption">
 					<p class="sliderContentStyle">A reader lives a thousand lives before he dies. The man who never reads lives only one.</p>
 					<h2 class="sliderHeadContentStyle">- George R.R. Martin</h2>
 				</div>
 			</div>
 			<div class="item">
-				<img src="resources/images/slider2.jpg" class="img-rounded img-responsive center-block sliderImg" />
+				<img src="${pageContext.request.contextPath}/resources/images/slider2.jpg" class="img-rounded img-responsive center-block sliderImg" />
 				<div class="carousel-caption">
 					<p class="sliderContentStyle">If we encounter a man of rare intellect, we should ask him what books he reads.</p>
 					<h2 class="sliderHeadContentStyle">- Ralph Waldo Emerson</h2>
 				</div> 
 			</div>
 			<div class="item">
-				<img src="resources/images/slider3.jpg" class="img-rounded img-responsive center-block sliderImg" />
+				<img src="${pageContext.request.contextPath}/resources/images/slider3.jpg" class="img-rounded img-responsive center-block sliderImg" />
 				<div class="carousel-caption">
 					<p class="sliderContentStyle">I would never read a book if it were possible for me to talk half an hour with the man who wrote it.</p>
 					<h2 class="sliderHeadContentStyle">- Woodrow Wilson</h2>
 				</div>
 			</div>
 			<div class="item">
-				<img src="resources/images/slider4.jpg" class="img-rounded img-responsive center-block sliderImg" />
+				<img src="${pageContext.request.contextPath}/resources/images/slider4.jpg" class="img-rounded img-responsive center-block sliderImg" />
 				<div class="carousel-caption">
 					<p class="sliderContentStyle">Great books help you understand, and they help you feel understood.</p>
 					<h2 class="sliderHeadContentStyle">- John Green</h2>
 				</div> 
 			</div>
 			<div class="item">
-				<img src="resources/images/slider5.jpg" class="img-rounded img-responsive center-block sliderImg" />
+				<img src="${pageContext.request.contextPath}/resources/images/slider5.jpg" class="img-rounded img-responsive center-block sliderImg" />
 				<div class="carousel-caption">
 					<p class="sliderContentStyle">Life is too short to read books that I'm not enjoying.</p>
 					<h2 class="sliderHeadContentStyle">- Melissa Marr</h2>
 				</div>
 			</div>
 			<div class="item">
-				<img src="resources/images/slider6.jpg" class="img-rounded img-responsive center-block sliderImg" />
+				<img src="${pageContext.request.contextPath}/resources/images/slider6.jpg" class="img-rounded img-responsive center-block sliderImg" />
 				<div class="carousel-caption">
 					<p class="sliderContentStyle">Clearly one must read every good book at least once every ten years.</p>
 					<h2 class="sliderHeadContentStyle">- C.S. Lewis</h2>
@@ -74,7 +74,7 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10">
 		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 			<div class="view overlay hm-orange-light">
-    			<img src="resources/images/no_image.jpeg" class="img-responsive center-block bookImageStyle img-fluid " alt="">
+    			<img src="${pageContext.request.contextPath}/resources/images/no_image.jpeg" class="img-responsive center-block bookImageStyle img-fluid " alt="">
     			<div class="mask flex-center">
         			<p class="white-text"></p>
     			</div>
@@ -89,7 +89,7 @@
 		</div>
 		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 			<div class="view overlay hm-orange-light">
-    			<img src="resources/images/no_image.jpeg" class="img-responsive center-block bookImageStyle img-fluid " alt="">
+    			<img src="${pageContext.request.contextPath}/resources/images/no_image.jpeg" class="img-responsive center-block bookImageStyle img-fluid " alt="">
     			<div class="mask flex-center">
         			<p class="white-text"></p>
     			</div>
@@ -104,7 +104,7 @@
 		</div>
 		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 			<div class="view overlay hm-orange-light">
-    			<img src="resources/images/no_image.jpeg" class="img-responsive center-block bookImageStyle img-fluid " alt="">
+    			<img src="${pageContext.request.contextPath}/resources/images/no_image.jpeg" class="img-responsive center-block bookImageStyle img-fluid " alt="">
     			<div class="mask flex-center">
         			<p class="white-text"></p>
     			</div>

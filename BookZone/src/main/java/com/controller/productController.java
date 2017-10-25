@@ -6,6 +6,11 @@ import java.io.FileOutputStream;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +31,9 @@ import com.model.Supplier;
 @Controller
 public class productController 
 {
+	@Autowired
+	SessionFactory sessionFactory;
+	
 	@Autowired
 	ProductDao productDao;
 	
@@ -72,13 +80,23 @@ public class productController
 	}
 	
 	@RequestMapping(value="AddProduct", method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product")Product product, @RequestParam("pimage")MultipartFile fileDetail, Model m)
+	public String addProduct(@ModelAttribute("product")Product product, HttpServletRequest request, @RequestParam("pimage")MultipartFile fileDetail, Model m)
 	{
 		String pageTitle = "BookZone - Product";
 		m.addAttribute("pageTitle", pageTitle);
 		productDao.addProduct(product);
+		String insertProductId = String.valueOf(product.getProductId());
+		
 		String path = "D:\\EclipseProjects\\BookZone\\src\\main\\webapp\\resources\\images\\products\\";
-		String totalFilePath = path+String.valueOf(product.getProductId())+".jpg";
+		String orginalFilename = fileDetail.getOriginalFilename();
+		/*Session session = sessionFactory.openSession();
+		String imageUpdateQuery = "UPDATE Product set imageName = :imageName WHERE productId = :productId";
+		Query query = session.createQuery(imageUpdateQuery);
+		query.setParameter("imageName", orginalFilename);
+		query.setParameter("productId", insertProductId);
+		query.executeUpdate();*/
+		
+		String totalFilePath = path+insertProductId+".jpg";
 		File productImage = new File(totalFilePath);
 		if(!fileDetail.isEmpty())
 		{
@@ -101,6 +119,8 @@ public class productController
 		}
 		List<Product> listProduct = productDao.retrieveProduct();
 		m.addAttribute("productList",listProduct);
+		Product product1 = new Product();
+		m.addAttribute(product1);
 		return "product";
 	}
 	

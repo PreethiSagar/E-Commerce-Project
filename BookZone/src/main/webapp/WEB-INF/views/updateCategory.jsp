@@ -26,6 +26,7 @@
 				</div>
 				<div class="form-group" align="center">	
 					<input type="submit" value="Update Category" class="btn btn-primary" />
+					<a href="${pageContext.request.contextPath}/category"><button class="btn btn-primary">Back To Category</button></a>
 				</div>
 				<div class="clear spaces10"></div>
 			</div>

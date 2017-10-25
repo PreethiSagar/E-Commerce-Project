@@ -5,7 +5,9 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
-	<center><b>Product Detail</b></center>
+	<div class="form-group" align="center">
+		<b class="formTitle">Product Details</b>
+	</div>
 </div>
 <div class="clear spaces10"></div>
 <jsp:include page="footer.jsp"></jsp:include>

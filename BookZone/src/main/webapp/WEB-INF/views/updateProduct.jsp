@@ -57,6 +57,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
 					<div class="form-group">	
 						<input type="submit" value="Update Product" class="btn btn-primary" />
+					<a href="${pageContext.request.contextPath}/product"><button class="btn btn-primary">Back To Product</button></a>
 					</div>
 				</div>
 				<div class="clear spaces5"></div>

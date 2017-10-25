@@ -20,7 +20,9 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<form:form action="${pageContext.request.contextPath}/AddCategory" modelAttribute="category">
 								<div class="clear spaces10"></div>
-								<b class="formTitle" align="center">Add Category</b>
+								<div class="form-group" align="center">
+									<b class="formTitle">Add Category</b>
+								</div>
 								<div class="clear spaces10"></div>
 								<div class="form-group">
 									<label>Category Id:</label>

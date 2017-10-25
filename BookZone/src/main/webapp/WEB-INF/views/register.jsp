@@ -12,7 +12,7 @@
 	</div>
 	<div class="clear spaces10"></div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 registerContent">
-		<form:form action="AddUser" modelAttribute="user" enctype="multipart/form-data">
+		<form:form action="${pageContext.request.contextPath}/AddUser" modelAttribute="user" enctype="multipart/form-data">
 			<div class="clear spaces10"></div>
 				<b class="formTitle">Create Account</b>
 			<div class="clear spaces10"></div>
