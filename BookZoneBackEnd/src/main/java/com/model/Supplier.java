@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Supplier 
 {
 	@Id
+	@GeneratedValue
 	int supplierId;
 	String supplierName, supplierAddress, supplierEmail;
 	public int getSupplierId() {

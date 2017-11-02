@@ -10,5 +10,6 @@ public interface ProductDao
 	public boolean deleteProduct(Product product);
 	public List<Product> retrieveProduct();
 	public Product getProduct(int productId);
-	public boolean updateProductImg(Product product);
+	public List<Product> getCategoryProducts(int categoryId);
+	public List<Product> retrieveLatestProducts();
 }

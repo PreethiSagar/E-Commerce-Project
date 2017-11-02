@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Category 
 {
 	@Id
+	@GeneratedValue
 	int catId;
 	String catName,catDesc;
 	

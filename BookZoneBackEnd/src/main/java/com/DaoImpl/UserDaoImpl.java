@@ -76,4 +76,14 @@ public class UserDaoImpl implements UserDao
 			return false;
 		}
 	}
+	
+	public List<User> findByUsername(String userName)
+	{
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from User where username= :username");
+		query.setParameter("username", userName);
+		List<User> listUser = query.list();
+		session.close();
+		return listUser;
+	}
 }

@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class Product 
 {
 	@Id
+	@GeneratedValue
 	int productId;
 	String productName, productDesc, imageName;
 	int stock, price, catId, supplierId;

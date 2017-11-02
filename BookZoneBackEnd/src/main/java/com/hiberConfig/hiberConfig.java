@@ -44,7 +44,7 @@ public class hiberConfig
 		Properties hp = new Properties();
 		hp.put("hibernate.hbm2ddl.auto", "update");
 		hp.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-		//hp.put("hibernate.show_sql", "true");
+		hp.put("hibernate.show_sql", "true");
 		
 		LocalSessionFactoryBuilder lsfb = new LocalSessionFactoryBuilder(getH2());
 		lsfb.addProperties(hp);
@@ -52,6 +52,7 @@ public class hiberConfig
 		lsfb.addAnnotatedClass(Category.class);
 		lsfb.addAnnotatedClass(Supplier.class);
 		lsfb.addAnnotatedClass(Product.class);
+		lsfb.addAnnotatedClass(Cart.class);
 		SessionFactory sessionFactory = lsfb.buildSessionFactory();
 		System.out.println("Session Factory Object Created...");
 		return sessionFactory;

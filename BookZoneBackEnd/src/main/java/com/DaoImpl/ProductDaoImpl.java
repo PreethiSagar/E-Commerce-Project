@@ -78,17 +78,22 @@ public class ProductDaoImpl implements ProductDao
 		return product;
 	}
 	
-	@Transactional
-	public boolean updateProductImg(Product product) 
+	public List<Product> getCategoryProducts(int categoryId) 	
 	{
-		try
-		{
-			sessionFactory.getCurrentSession().saveOrUpdate(product);
-			return true;
-		}
-		catch(Exception e)
-		{
-			return false;
-		}
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from Product where catId="+categoryId);
+		List<Product> listProduct = query.list();
+		session.close();
+		return listProduct;
+	}
+
+	public List<Product> retrieveLatestProducts() 
+	{
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from Product P ORDER BY P.productId DESC");
+		query.setMaxResults(6);
+		List<Product> latestProduct = query.list();
+		session.close();
+		return latestProduct;
 	}
 }
