@@ -39,6 +39,8 @@ public class supplierController
 		supplierDao.addSupplier(supplier);
 		List<Supplier> listSupplier = supplierDao.retrieveSupplier();
 		m.addAttribute("supplierList",listSupplier);
+		Supplier supplier1 = new Supplier();
+		m.addAttribute(supplier1);
 		return "supplier";
 	}
 	

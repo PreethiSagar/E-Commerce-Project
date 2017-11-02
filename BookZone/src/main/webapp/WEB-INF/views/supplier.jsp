@@ -23,10 +23,6 @@
 								<b class="formTitle" align="center">Add Supplier</b>
 								<div class="clear spaces10"></div>
 								<div class="form-group">
-									<label>Supplier Id:</label>
-									<form:input path="supplierId" class="form-control" placeholder="Supplier Id" />
-								</div>
-								<div class="form-group">
 									<label>Supplier Name:</label>
 									<form:input path="supplierName" class="form-control" placeholder="Supplier Name" />
 								</div>
@@ -51,33 +47,38 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
 							<table class="table table-hover" align="center">
 								<tr class="tableHead">
-									<th>Supplier Id</th>
 									<th>Supplier Name</th>
 									<th>Supplier Address</th>
 									<th>Supplier Email</th>
 									<th>Operation</th>
 								</tr>
-								<c:forEach items="${supplierList}" var="supplier">
+								<c:if test="${empty supplierList}">
 									<tr class="tableContent">
-										<td>${supplier.supplierId}</td>
-										<td>${supplier.supplierName}</td>
-										<td>${supplier.supplierAddress}</td>
-										<td>${supplier.supplierEmail}</td>
-										<td>
-											<a href="${pageContext.request.contextPath}/updateSupplier/${supplier.supplierId}">
-												<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />
-											</a>
-											&nbsp;&nbsp;&nbsp;
-											<a href="${pageContext.request.contextPath}/deleteSupplier/${supplier.supplierId}">
-												<img src="${pageContext.request.contextPath}/resources/images/deleteIcon.png" class="iconStyle" />
-											</a>
-											&nbsp;&nbsp;&nbsp;
-											<a href="${pageContext.request.contextPath}/viewSupplier/${supplier.supplierId}">
-												<img src="${pageContext.request.contextPath}/resources/images/viewIcon.png" class="iconStyle" />
-											</a>
-										</td>
+										<td colspan="5" align="center">No Supplier Available.</td>
 									</tr>
-								</c:forEach>
+								</c:if>
+								<c:if test="${!empty supplierList}">
+									<c:forEach items="${supplierList}" var="supplier">
+										<tr class="tableContent">
+											<td>${supplier.supplierName}</td>
+											<td>${supplier.supplierAddress}</td>
+											<td>${supplier.supplierEmail}</td>
+											<td>
+												<a href="${pageContext.request.contextPath}/updateSupplier/${supplier.supplierId}">
+													<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />
+												</a>
+												&nbsp;&nbsp;&nbsp;
+												<a href="${pageContext.request.contextPath}/deleteSupplier/${supplier.supplierId}">
+													<img src="${pageContext.request.contextPath}/resources/images/deleteIcon.png" class="iconStyle" />
+												</a>
+												&nbsp;&nbsp;&nbsp;
+												<a href="${pageContext.request.contextPath}/viewSupplier/${supplier.supplierId}">
+													<img src="${pageContext.request.contextPath}/resources/images/viewIcon.png" class="iconStyle" />
+												</a>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:if>
 							</table>
 						</div>
 					</div>

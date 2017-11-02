@@ -24,10 +24,6 @@
 								<div class="clear spaces10"></div>
 								<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 									<div class="form-group">
-									    <label>Product Id:</label>
-										<form:input path="productId" class="form-control" placeholder="Product Id" />
-									</div>
-									<div class="form-group">
 									    <label>Product Name:</label>
 										<form:input path="productName" class="form-control" placeholder="Product Name" />
 									</div>
@@ -77,33 +73,40 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
 							<table class="table table-hover" align="center">
 								<tr class="tableHead">
-									<th>Product Id</th>
 									<th>Product Name</th>
 									<th>Price</th>
 									<th>Stock</th>
+									<th>Photo</th>
 									<th>Operation</th>
 								</tr>
-								<c:forEach items="${productList}" var="product">
+								<c:if test="${empty productList}">
 									<tr class="tableContent">
-										<td>${product.productId}</td>
-										<td>${product.productName}</td>
-										<td>${product.price}</td>
-										<td>${product.stock}</td>
-										<td>
-											<a href="${pageContext.request.contextPath}/updateProduct/${product.productId}">
-												<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />
-											</a>
-											&nbsp;&nbsp;&nbsp;
-											<a href="${pageContext.request.contextPath}/deleteProduct/${product.productId}">
-												<img src="${pageContext.request.contextPath}/resources/images/deleteIcon.png" class="iconStyle" />
-											</a>
-											&nbsp;&nbsp;&nbsp;
-											<a href="${pageContext.request.contextPath}/viewProduct/${product.productId}">
-												<img src="${pageContext.request.contextPath}/resources/images/viewIcon.png" class="iconStyle" />
-											</a>
-										</td>
+										<td colspan="6" align="center">No Product Available.</td>
 									</tr>
-								</c:forEach>
+								</c:if>
+								<c:if test="${!empty productList}">
+									<c:forEach items="${productList}" var="product">
+										<tr class="tableContent">
+											<td>${product.productName}</td>
+											<td>${product.price}</td>
+											<td>${product.stock}</td>
+											<td><img src="${pageContext.request.contextPath}/resources/images/products/${product.productId}.jpg" style="width:50px;height:50px;"/></td>
+											<td>
+												<a href="${pageContext.request.contextPath}/updateProduct/${product.productId}">
+													<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />
+												</a>
+												&nbsp;&nbsp;&nbsp;
+												<a href="${pageContext.request.contextPath}/deleteProduct/${product.productId}">
+													<img src="${pageContext.request.contextPath}/resources/images/deleteIcon.png" class="iconStyle" />
+												</a>
+												&nbsp;&nbsp;&nbsp;
+												<a href="${pageContext.request.contextPath}/viewProduct/${product.productId}">
+													<img src="${pageContext.request.contextPath}/resources/images/viewIcon.png" class="iconStyle" />
+												</a>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:if>
 							</table>
 						</div>
 					</div>

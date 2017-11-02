@@ -25,10 +25,6 @@
 								</div>
 								<div class="clear spaces10"></div>
 								<div class="form-group">
-									<label>Category Id:</label>
-									<form:input path="catId" class="form-control" placeholder="Category Id" />
-								</div>
-								<div class="form-group">
 									<label>Category Name:</label>
 									<form:input path="catName" class="form-control" placeholder="Category Name" />
 								</div>
@@ -47,31 +43,36 @@
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
 							<table class="table table-hover" align="center">
 								<tr class="tableHead">
-									<th>Category Id</th>
 									<th>Category Name</th>
 									<th>Category Description</th>
 									<th>Operation</th>
 								</tr>
-								<c:forEach items="${categoryList}" var="category">
+								<c:if test="${empty categoryList}">
 									<tr class="tableContent">
-										<td>${category.catId }</td>
-										<td>${category.catName }</td>
-										<td>${category.catDesc }</td>
-										<td>
-											<a href="${pageContext.request.contextPath}/updateCategory/${category.catId}">
-												<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />
-											</a>
-											&nbsp;&nbsp;&nbsp;
-											<a href="${pageContext.request.contextPath}/deleteCategory/${category.catId}">
-												<img src="${pageContext.request.contextPath}/resources/images/deleteIcon.png" class="iconStyle" />
-											</a>
-											&nbsp;&nbsp;&nbsp;
-											<a href="${pageContext.request.contextPath}/viewCategory/${category.catId}">
-												<img src="${pageContext.request.contextPath}/resources/images/viewIcon.png" class="iconStyle" />
-											</a>
-										</td>
+										<td colspan="4" align="center">No Category Available.</td>
 									</tr>
-								</c:forEach>
+								</c:if>
+								<c:if test="${!empty categoryList}">
+									<c:forEach items="${categoryList}" var="category">
+										<tr class="tableContent">
+											<td>${category.catName }</td>
+											<td>${category.catDesc }</td>
+											<td>
+												<a href="${pageContext.request.contextPath}/updateCategory/${category.catId}">
+													<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />
+												</a>
+												&nbsp;&nbsp;&nbsp;
+												<a href="${pageContext.request.contextPath}/deleteCategory/${category.catId}">
+													<img src="${pageContext.request.contextPath}/resources/images/deleteIcon.png" class="iconStyle" />
+												</a>
+												&nbsp;&nbsp;&nbsp;
+												<a href="${pageContext.request.contextPath}/viewCategory/${category.catId}">
+													<img src="${pageContext.request.contextPath}/resources/images/viewIcon.png" class="iconStyle" />
+												</a>
+											</td>
+										</tr>
+									</c:forEach>
+								</c:if>
 							</table>
 						</div>
 					</div>

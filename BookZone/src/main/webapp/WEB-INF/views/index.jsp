@@ -67,59 +67,37 @@
 			<span class="sr-only">Next</span>
 		</a>
 	</div>
-</div>
-<div class="clear spaces10"></div>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	<div class="clear spaces10"></div>
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10">
-		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-			<div class="view overlay hm-orange-light">
-    			<img src="${pageContext.request.contextPath}/resources/images/no_image.jpeg" class="img-responsive center-block bookImageStyle img-fluid " alt="">
-    			<div class="mask flex-center">
-        			<p class="white-text"></p>
-    			</div>
+	<div class="clear spaces20"></div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="clear spaces10"></div>
+		<c:if test="${empty latestProductList}">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10" align="center">
+				<span class="bookHeadContentStyle">No Products Available</span>
 			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 spaces20" align="center">
-				<span class="bookHeadContentStyle">INDIA AFTER GANDHI</span>
-				</br>
-				<span class="bookContentStyle">Ramachandra Guha</span>
-				</br>
-				<span class="bookContentStyle">&#8377;459</span>
+		</c:if>
+		<c:if test="${!empty latestProductList}">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 left10 right10">
+				<c:forEach items="${latestProductList}" var="product">
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 spaces10">
+						<div class="view overlay hm-orange-light">
+			    			<img src="${pageContext.request.contextPath}/resources/images/products/${product.productId}.jpg" class="center-block productImageStyle" alt="">
+			    			<div class="mask flex-center">
+			        			<p class="white-text"></p>
+			    			</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 spaces10" align="center">
+							<span class="bookHeadContentStyle"><a href="${pageContext.request.contextPath}/viewProduct/${product.productId}">${product.productName}</a></span>
+							</br>
+							<span class="bookContentStyle">${product.productDesc}</span>
+							</br>
+							<span class="bookContentStyle">&#8377;${product.price}</span>
+						</div>
+					</div>
+				</c:forEach>	
 			</div>
-		</div>
-		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-			<div class="view overlay hm-orange-light">
-    			<img src="${pageContext.request.contextPath}/resources/images/no_image.jpeg" class="img-responsive center-block bookImageStyle img-fluid " alt="">
-    			<div class="mask flex-center">
-        			<p class="white-text"></p>
-    			</div>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 spaces20" align="center">
-				<span class="bookHeadContentStyle">THE IMMORTALS OF MELUHA</span>
-				</br>
-				<span class="bookContentStyle">Amish Tripathi</span>
-				</br>
-				<span class="bookContentStyle">&#8377;139</span>
-			</div>
-		</div>
-		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-			<div class="view overlay hm-orange-light">
-    			<img src="${pageContext.request.contextPath}/resources/images/no_image.jpeg" class="img-responsive center-block bookImageStyle img-fluid " alt="">
-    			<div class="mask flex-center">
-        			<p class="white-text"></p>
-    			</div>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 spaces20" align="center">
-				<span class="bookHeadContentStyle">FIVE POINT SOMEONE</span>
-				</br>
-				<span class="bookContentStyle">Chetan Bhagat</span>
-				</br>
-				<span class="bookContentStyle">&#8377;150</span>
-			</div>
-		</div>
-		<div class="clear spaces20"></div>
+		</c:if>
+		<div class="clear spaces10"></div>
 	</div>
-	<div class="clear spaces10"></div>
 </div>
-<div class="clear spaces10"></div>
+<div class="clear spaces20"></div>
 <jsp:include page="footer.jsp"></jsp:include>

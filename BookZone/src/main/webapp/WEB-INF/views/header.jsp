@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="shortcut icon" href="http://localhost:8080/BookZone/resources/images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon" />
 <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/headerStyle.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/footerStyle.css" rel="stylesheet">
@@ -37,14 +37,14 @@
 				</a>		
 				<ul class="nav navbar-right navbar-nav right0">
 					<li><a href="${pageContext.request.contextPath}/">BookZone</a></li>
-					<li><a href="${pageContext.request.contextPath}/category">Category</a></li>
 					<c:if test="${pageContext.request.userPrincipal.name==null}">
 						<li><a href="${pageContext.request.contextPath}/goToLogin">Sign In</a></li>
 						<li><a href="${pageContext.request.contextPath}/register">Sign Up</a></li>
 					</c:if>					
 					<c:if test="${pageContext.request.userPrincipal.name!=null}">
 					<c:if test = "${sessionScope.roleName == 'user'}">
-					<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;My Cart</a></li>
+					<li><a href="${pageContext.request.contextPath}/productList">Products</a></li>
+					<li><a href="${pageContext.request.contextPath}/MyCart"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;My Cart</a></li>
 					</c:if>	
 					<c:if test = "${sessionScope.roleName == 'admin'}">
 					<li>

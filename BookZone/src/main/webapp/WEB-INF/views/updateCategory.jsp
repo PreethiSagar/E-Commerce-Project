@@ -12,10 +12,7 @@
 				<div class="clear spaces10"></div>
 				<b class="formTitle" align="center">Update Category</b>
 				<div class="clear spaces10"></div>
-				<div class="form-group">
-					<label>Category Id:</label>
-					<form:input path="catId" class="form-control" placeholder="Category Id" />
-				</div>
+				<form:input type="hidden" path="catId" class="form-control" placeholder="Category Id" />
 				<div class="form-group">
 					<label>Category Name:</label>
 					<form:input path="catName" class="form-control" placeholder="Category Name" />

@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.Dao.CategoryDao;
+import com.Dao.ProductDao;
+import com.Dao.SupplierDao;
 import com.Dao.UserDao;
+import com.model.Cart;
+import com.model.Product;
 import com.model.User;
 
 @Controller
@@ -27,11 +34,22 @@ public class indexController
 	@Autowired
 	UserDao userDao;
 	
+	@Autowired
+	ProductDao productDao;
+	
+	@Autowired
+	CategoryDao categoryDao;
+	
+	@Autowired
+	SupplierDao supplierDao;
+	
 	@RequestMapping("/")
 	public String index(Model m)
 	{
 		String pageTitle = "BookZone - Home";
 		m.addAttribute("pageTitle", pageTitle);
+		List<Product> latestProductList = productDao.retrieveLatestProducts();
+		m.addAttribute("latestProductList", latestProductList);
 		return "index";
 	}
 	
@@ -53,6 +71,7 @@ public class indexController
 		
 		String roleName=null;
 		boolean loggedIn=false;
+		int userId=0;
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedUsername = auth.getName();
@@ -71,6 +90,12 @@ public class indexController
 				roleName = "user";
 			}
 		}
+		List<User> userList = userDao.findByUsername(loggedUsername);
+		for(User u:userList)
+		{
+			userId = u.getUserid();
+		}
+		session.setAttribute("userId", userId);
 		session.setAttribute("loggedIn", loggedIn);
 		session.setAttribute("roleName", roleName);
 		
@@ -82,7 +107,7 @@ public class indexController
 	{
 		String pageTitle = "BookZone - Error";
 		m.addAttribute("pageTitle", pageTitle);
-		return "error";
+		return "loginError";
 	}
 	
 	@RequestMapping("/register")
@@ -123,6 +148,9 @@ public class indexController
 		{
 			m.addAttribute("error", "Problem in file uploading.");
 		}
+
+		List<Product> latestProductList = productDao.retrieveLatestProducts();
+		m.addAttribute("latestProductList", latestProductList);
 		return "index";
 	}
 }

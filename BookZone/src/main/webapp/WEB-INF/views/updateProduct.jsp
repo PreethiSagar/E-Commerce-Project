@@ -13,10 +13,7 @@
 				<b class="formTitle" align="center">Update Product</b>
 				<div class="clear spaces10"></div>
 				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-					<div class="form-group">
-						<label>Product Id:</label>
-						<form:input path="productId" class="form-control" placeholder="Product Id" />
-					</div>
+					<form:input type="hidden" path="productId" class="form-control" placeholder="Product Id" />
 					<div class="form-group">
 						<label>Product Name:</label>
 						<form:input path="productName" class="form-control" placeholder="Product Name" />

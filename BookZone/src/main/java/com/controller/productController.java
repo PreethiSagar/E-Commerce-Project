@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.Dao.CategoryDao;
 import com.Dao.ProductDao;
 import com.Dao.SupplierDao;
+import com.model.Cart;
 import com.model.Category;
 import com.model.Product;
 import com.model.Supplier;
@@ -196,6 +197,40 @@ public class productController
 		m.addAttribute("pageTitle", pageTitle);
 		Product product = productDao.getProduct(productId);
 		m.addAttribute(product);
+		int catId = product.getCatId();
+		Category category = categoryDao.getCategory(catId);
+		m.addAttribute(category);
+		int supplierId = product.getSupplierId();
+		Supplier supplier = supplierDao.getSupplier(supplierId);
+		m.addAttribute(supplier);
+		Cart cart = new Cart();
+		m.addAttribute(cart);
 		return "productDetail";
+	}
+	
+	@RequestMapping(value = "/categoryProducts/{catId}", method=RequestMethod.GET)
+	public String categoryProducts(@PathVariable("catId")int catId, Model m)
+	{ 
+		String pageTitle = "BookZone - Categorized Products";
+		m.addAttribute("pageTitle", pageTitle);
+		List<Product> productList = productDao.getCategoryProducts(catId);
+		m.addAttribute("productList",productList);
+		Product product1 = new Product();
+		m.addAttribute(product1);
+		return "categoryProduct";
+	}
+	
+	@RequestMapping(value = "/productList", method=RequestMethod.GET)
+	public String productList(Model m)
+	{ 
+		String pageTitle = "BookZone - Products";
+		m.addAttribute("pageTitle", pageTitle);
+		Product product = new Product();
+		m.addAttribute(product);
+		List<Product> listProduct = productDao.retrieveProduct();
+		m.addAttribute("productList",listProduct);
+		m.addAttribute("categoryList",this.getCategories());
+		m.addAttribute("supplierList",this.getSuppliers());
+		return "categoryProduct";
 	}
 }

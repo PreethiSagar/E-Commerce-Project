@@ -12,10 +12,7 @@
 				<div class="clear spaces10"></div>
 				<b class="formTitle" align="center">Update Supplier</b>
 				<div class="clear spaces10"></div>
-				<div class="form-group">
-					<label>Supplier Id:</label>
-					<form:input path="supplierId" class="form-control" placeholder="Supplier Id" />
-				</div>
+				<form:input type="hidden" path="supplierId" class="form-control" placeholder="Supplier Id" />
 				<div class="form-group">
 					<label>Supplier Name:</label>
 					<form:input path="supplierName" class="form-control" placeholder="Supplier Name" />
