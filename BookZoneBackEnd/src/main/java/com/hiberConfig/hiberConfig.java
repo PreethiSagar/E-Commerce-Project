@@ -53,6 +53,7 @@ public class hiberConfig
 		lsfb.addAnnotatedClass(Supplier.class);
 		lsfb.addAnnotatedClass(Product.class);
 		lsfb.addAnnotatedClass(Cart.class);
+		lsfb.addAnnotatedClass(Contact.class);
 		SessionFactory sessionFactory = lsfb.buildSessionFactory();
 		System.out.println("Session Factory Object Created...");
 		return sessionFactory;

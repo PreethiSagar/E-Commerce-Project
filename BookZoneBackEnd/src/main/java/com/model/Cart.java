@@ -14,11 +14,11 @@ public class Cart implements Serializable
 	@GeneratedValue
 	private int cartId;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name="userid")
 	private User user;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name="productId")
 	private Product product;
 	

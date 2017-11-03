@@ -93,7 +93,7 @@ public class UserTest
 	@Test
 	public void getUserTest()
 	{
-		User user = userDAO.getUser(3);
+		User user = userDAO.getUser(23);
 		assertNotNull("Problem in getting: "+user);
 		System.out.println("User Id: "+user.getUserid());
 		System.out.println("User Name: "+user.getName());

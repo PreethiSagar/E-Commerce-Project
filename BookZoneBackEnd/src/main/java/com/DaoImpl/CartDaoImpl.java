@@ -98,7 +98,7 @@ public class CartDaoImpl implements CartDao
 		try
 		{
 			session.beginTransaction();
-			cr = (List<Cart>)session.createQuery("from Cart ct where ct.userid=:userId and ct.productId=:productId")
+			cr = (List<Cart>)session.createQuery("from Cart where userid=:userId and productId=:productId")
 					.setInteger("userId", userId)
 					.setInteger("productId", productId)
 					.getResultList();
