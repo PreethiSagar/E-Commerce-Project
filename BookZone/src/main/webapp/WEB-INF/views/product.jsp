@@ -90,7 +90,7 @@
 											<td>${product.productName}</td>
 											<td>${product.price}</td>
 											<td>${product.stock}</td>
-											<td><img src="${pageContext.request.contextPath}/resources/images/products/${product.productId}.jpg" style="width:50px;height:50px;"/></td>
+											<td><img src="${pageContext.request.contextPath}/resources/images/products/${product.productId}.jpg" class="productThumb" /></td>
 											<td>
 												<a href="${pageContext.request.contextPath}/updateProduct/${product.productId}">
 													<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />

@@ -10,9 +10,9 @@
 			<li data-target="#bookZoneCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#bookZoneCarousel" data-slide-to="1" class="active"></li>
 			<li data-target="#bookZoneCarousel" data-slide-to="2" class="active"></li>
+			<li data-target="#bookZoneCarousel" data-slide-to="3" class="active"></li>
 			<li data-target="#bookZoneCarousel" data-slide-to="4" class="active"></li>
 			<li data-target="#bookZoneCarousel" data-slide-to="5" class="active"></li>
-			<li data-target="#bookZoneCarousel" data-slide-to="6" class="active"></li>
 		</ol>
 		<div class="carousel-inner">
 			<div class="item active">

@@ -7,8 +7,8 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
 	<div class="clear spaces10"></div>
 	<form action="${pageContext.request.contextPath}/AddCart" method="post">
-	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 productDetailImage">
-		<img src="${pageContext.request.contextPath}/resources/images/products/${product.getProductId()}.jpg" class="productDetailImg center-block" alt="">
+	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+		<img src="${pageContext.request.contextPath}/resources/images/products/${product.getProductId()}.jpg" class="productDetailImg detailBorderDtyle center-block" alt="">
 	</div>
 	<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 spacingWidth"></div>
 	<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" align="left">

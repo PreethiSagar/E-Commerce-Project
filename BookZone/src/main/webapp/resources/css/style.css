@@ -34,6 +34,10 @@
 {
 	margin-top:20px;
 }
+.spaces40
+{
+	margin-top:40px;
+}
 .bottom5
 {
 	margin-bottom:5px;
@@ -217,15 +221,63 @@
 }
 .productDetailImg
 {
-	width:250px;
+	width:300px;
 	height:300px;
 }
 .spacingWidth
 {
 	width: 10px !important;
 }
-.productDetailImage
+.detailBorderDtyle
 {
 	border: 1px solid #3c5c77;
-    border-radius: 35px;
+    border-radius: 10px;
+}
+.productThumb
+{
+	width:50px !important;
+	height:50px !important;
+}
+.verticalLine 
+{
+  border-left: 1px solid #3c5c77;
+}
+.acknowledgementBG
+{
+	background-color: rgba(60, 92, 119, 0.55) !important;
+	border-radius: 10px;
+}
+.acknowledgementTitle
+{
+	color: #E48E27 !important;
+    font-size: 45px;
+    font-style: italic;
+}
+.aboutUsHead
+{
+	background-color: rgba(60, 92, 119, 0.65) !important;
+	border-radius: 10px;
+}
+.aboutUsContent
+{
+	background-color: rgba(60, 92, 119, 0.55) !important;
+	border-radius: 10px;
+}
+.aboutUsTitle
+{
+	color: #E48E27 !important;
+    font-size: 45px;
+    font-style: italic;
+}
+.aboutUsContentItalic
+{
+	color: #3c5c77 !important;
+    font-size: 25px;
+    font-style: italic;
+}
+.aboutUsDataContent
+{
+	color: #3c5c77 !important;
+    font-size: 25px;
+    font-weight: normal;
 }

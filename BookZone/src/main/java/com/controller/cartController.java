@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -53,7 +54,7 @@ public class cartController
 		int userId = (Integer)session.getAttribute("userId");
 		List<Cart> userCartList = cartDao.retrieveCart(userId);
 		m.addAttribute("userCartList", userCartList);
-		return "checkout";
+		return "cart";
 	}
 	
 	@RequestMapping(value="/AddCart", method=RequestMethod.POST)
@@ -65,12 +66,6 @@ public class cartController
 		int userId = Integer.valueOf(request.getParameter("cartUserId"));
 		int productId = Integer.valueOf(request.getParameter("cartProductId"));
 		int quantity = Integer.valueOf(request.getParameter("cartQuantity"));
-		/*m.addAttribute("cartId", cartId);
-		m.addAttribute("userId", userId);
-		m.addAttribute("productId", productId);
-		m.addAttribute("productName", productName);
-		m.addAttribute("quantity", quantity);
-		m.addAttribute("price", price);*/
 		Product p = productDao.getProduct(productId);
 		double price = p.getPrice();
 		User u = userDao.getUser(userId);
@@ -113,6 +108,46 @@ public class cartController
 		}
 		List<Cart> userCartList = cartDao.retrieveCart(userId);
 		m.addAttribute("userCartList", userCartList);
-		return "checkout";
+		return "cart";
+	}
+	
+	@RequestMapping(value="/checkout", method=RequestMethod.GET)
+	public String shippingDetails(HttpSession session, Model m)
+	{
+		String pageTitle = "BookZone - Shipping Details";
+		m.addAttribute("pageTitle", pageTitle);
+		int userId = (Integer)session.getAttribute("userId");
+		User userDetails = userDao.getUser(userId);
+		m.addAttribute(userDetails);
+		String userName = userDetails.getName();
+		m.addAttribute("userName",userName);
+		String userPhone = userDetails.getPhone();
+		m.addAttribute("userPhone",userPhone);
+		String userEmail = userDetails.getEmail();
+		m.addAttribute("userEmail",userEmail);
+		String userAddress = userDetails.getAddress();
+		m.addAttribute("userAddress",userAddress);
+		String userCountry = userDetails.getCountry();
+		m.addAttribute("userCountry",userCountry);
+		return "shipping";
+	}
+	
+	@RequestMapping(value="/invoice", method=RequestMethod.GET)
+	public String invoiceDetails(HttpSession session, Model m)
+	{
+		String pageTitle = "BookZone - Invoice";
+		m.addAttribute("pageTitle", pageTitle);
+		int userId = (Integer)session.getAttribute("userId");
+		List<Cart> userCartList = cartDao.retrieveCart(userId);
+		m.addAttribute("userCartList", userCartList);
+		return "invoice";
+	}
+	
+	@RequestMapping(value="/ack", method=RequestMethod.GET)
+	public String ackDetails(Model m)
+	{
+		String pageTitle = "BookZone - Thank You";
+		m.addAttribute("pageTitle", pageTitle);
+		return "acknowledgement";
 	}
 }

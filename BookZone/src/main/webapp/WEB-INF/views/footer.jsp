@@ -2,13 +2,13 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bookzoneFooter">
 	<footer class="">
 		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 spaces10 bottom10" align="left">
-			<a href="#" class="footerContent">About Us</a>
+			<a href="${pageContext.request.contextPath}/AboutUs" class="footerContent">About Us</a>
 			<span class="footerContent">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-			<a href="#" class="footerContent">Help</a>
+			<a href="${pageContext.request.contextPath}/Help" class="footerContent">Help</a>
 			</br>
-			<a href="#" class="footerContent">Privacy Policy</a>
+			<a href="${pageContext.request.contextPath}/PrivacyPolicy" class="footerContent">Privacy Policy</a>
 			<span class="footerContent">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-			<a href="#" class="footerContent">Contact Us</a>
+			<a href="${pageContext.request.contextPath}/ContactUs" class="footerContent">Contact Us</a>
 		</div>
 		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 spaces20" align="center">
 			<span class="footerContent">Copyright 2017 BookZone</span>

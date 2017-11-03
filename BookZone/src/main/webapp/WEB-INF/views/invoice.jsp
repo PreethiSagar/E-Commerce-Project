@@ -5,7 +5,80 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
-	
+	<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
+	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" align="center">
+		<div class="clear spaces10"></div>
+		<div class="form-group" align="left">
+			<b class="formTitle">Order Details <label class="detailContent">#OrderId</label></b>
+		</div>
+		<div class="clear spaces10"></div>
+		<div class="form-group" align="left">
+			<label class="detailTitle">Order Information</label>
+		</div>
+		<table class="table table-condensed">
+			<tr>
+				<td>
+					<label class="detailTitle">Date:</label> 
+					<label class="detailContent"></label>
+				</td>
+				<td>
+					<label class="detailTitle">Name/Email:</label> 
+					<label class="detailContent"></label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="detailTitle">Phone:</label> 
+					<label class="detailContent"></label>
+				</td>
+				<td>
+					<label class="detailTitle">Estimated Delivery:</label> 
+					<label class="detailContent">Within 7 Working Days</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="detailTitle">Amount</label> 
+					<label class="detailContent"></label>
+				</td>
+				<td>
+					<label class="detailTitle">Mode of Payment:</label> 
+					<label class="detailContent"></label>
+				</td>
+			</tr>
+		</table>
+		<div class="form-group" align="left">
+			<label class="detailTitle">Items</label>
+		</div>
+		<table class="table table-condensed">
+			<tr>
+				<th colspan="2">Product Name $ Details</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>SubTotal</th>
+			</tr>
+			<c:forEach items="${userCartList}" var="cart">
+				<tr>
+					<td><img src="${pageContext.request.contextPath}/resources/images/no_image.jpeg" class="productThumb" /></td>
+					<td>${cart.cartId }</td>
+					<td>${cart.cartQuantity }</td>
+					<td>${cart.cartPrice }</td>
+					<td>${cart.cartQuantity*cart.cartPrice }</td>
+					<c:set var="grandtotal" value="${grandtotal + (cart.cartQuantity*cart.cartPrice) }"></c:set>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td colspan="4" align="right"><label>Grand Total: </label></td>
+				<td><label><c:out value="${grandtotal }"></c:out></label></td>
+			</tr>
+		</table>
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="form-group" align="right">						
+				<a href="${pageContext.request.contextPath}/ack"><input type="button" value="Confirm" class="btn btn-primary" /></a>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
 </div>
 <div class="clear spaces10"></div>
 <jsp:include page="footer.jsp"></jsp:include>

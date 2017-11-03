@@ -153,4 +153,36 @@ public class indexController
 		m.addAttribute("latestProductList", latestProductList);
 		return "index";
 	}
+	
+	@RequestMapping(value="/AboutUs", method=RequestMethod.GET)
+	public String aboutUs(Model m)
+	{
+		String pageTitle = "BookZone - About Us";
+		m.addAttribute("pageTitle", pageTitle);
+		return "aboutUs";
+	}
+	
+	@RequestMapping(value="/ContactUs", method=RequestMethod.GET)
+	public String contactUs(Model m)
+	{
+		String pageTitle = "BookZone - Contact Us";
+		m.addAttribute("pageTitle", pageTitle);
+		return "contactUs";
+	}
+	
+	@RequestMapping(value="/PrivacyPolicy", method=RequestMethod.GET)
+	public String privacyPolicy(Model m)
+	{
+		String pageTitle = "BookZone - Privacy Policy";
+		m.addAttribute("pageTitle", pageTitle);
+		return "privacyPolicy";
+	}
+	
+	@RequestMapping(value="/Help", method=RequestMethod.GET)
+	public String help(Model m)
+	{
+		String pageTitle = "BookZone - Help";
+		m.addAttribute("pageTitle", pageTitle);
+		return "help";
+	}
 }
