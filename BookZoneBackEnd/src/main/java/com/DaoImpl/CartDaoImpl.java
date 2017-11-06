@@ -64,7 +64,7 @@ public class CartDaoImpl implements CartDao
 	public List<Cart> retrieveCart(int userId) 
 	{
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Cart where userid=:userId").setInteger("userId", userId);
+		Query query = session.createQuery("from Cart where userid=:userId and orderStatus = 0").setInteger("userId", userId);
 		List<Cart> listCart = query.list();
 		session.close();
 		return listCart;
@@ -77,7 +77,7 @@ public class CartDaoImpl implements CartDao
 		try
 		{
 			session.beginTransaction();
-			cr=(List<Cart>)session.createQuery("from Cart where userid=:userId and productId=:productId")
+			cr=(List<Cart>)session.createQuery("from Cart where userid=:userId and productId=:productId and orderStatus = 0")
 					.setInteger("userId", userId)
 					.setInteger("productId", productId)
 					.list();
@@ -98,7 +98,7 @@ public class CartDaoImpl implements CartDao
 		try
 		{
 			session.beginTransaction();
-			cr = (List<Cart>)session.createQuery("from Cart where userid=:userId and productId=:productId")
+			cr = (List<Cart>)session.createQuery("from Cart where userid=:userId and productId=:productId and orderStatus = 0")
 					.setInteger("userId", userId)
 					.setInteger("productId", productId)
 					.getResultList();

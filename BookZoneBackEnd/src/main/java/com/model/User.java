@@ -2,11 +2,12 @@ package com.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import org.springframework.stereotype.Component;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@Component
 @Entity
+@Table
 public class User implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -14,14 +15,22 @@ public class User implements Serializable
 	@Id
 	@GeneratedValue
 	private int userid;
+	@Email
+	@Column(unique = true, nullable = false)
 	private String email;
+	@NotEmpty
 	private String name;
 	@Column(unique = true, nullable = false)
 	private String username;
+	@NotEmpty
+	@Size(min = 10, max = 10)
 	private String phone;
+	@NotEmpty
 	private String address;
+	@NotEmpty
 	private String password;
 	private String role;
+	@NotEmpty
 	private String country;
 	private String userimage;
 	private boolean enabled;

@@ -24,6 +24,7 @@ public class Cart implements Serializable
 	
 	private double cartPrice;
 	private int cartQuantity;
+	private int orderStatus;
 	
 	public int getCartId() {
 		return cartId;
@@ -54,5 +55,11 @@ public class Cart implements Serializable
 	}
 	public void setCartQuantity(int cartQuantity) {
 		this.cartQuantity = cartQuantity;
+	}
+	public int getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(int orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 }
