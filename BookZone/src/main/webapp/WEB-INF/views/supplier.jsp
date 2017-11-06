@@ -18,7 +18,7 @@
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="tab1supplier">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<form:form action="${pageContext.request.contextPath}/AddSupplier" modelAttribute="supplier">
+							<form:form action="${pageContext.request.contextPath}/admin/AddSupplier" modelAttribute="supplier">
 								<div class="clear spaces10"></div>
 								<b class="formTitle" align="center">Add Supplier</b>
 								<div class="clear spaces10"></div>
@@ -64,15 +64,15 @@
 											<td>${supplier.supplierAddress}</td>
 											<td>${supplier.supplierEmail}</td>
 											<td>
-												<a href="${pageContext.request.contextPath}/updateSupplier/${supplier.supplierId}">
+												<a href="${pageContext.request.contextPath}/admin/updateSupplier/${supplier.supplierId}">
 													<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />
 												</a>
 												&nbsp;&nbsp;&nbsp;
-												<a href="${pageContext.request.contextPath}/deleteSupplier/${supplier.supplierId}">
+												<a href="${pageContext.request.contextPath}/admin/deleteSupplier/${supplier.supplierId}">
 													<img src="${pageContext.request.contextPath}/resources/images/deleteIcon.png" class="iconStyle" />
 												</a>
 												&nbsp;&nbsp;&nbsp;
-												<a href="${pageContext.request.contextPath}/viewSupplier/${supplier.supplierId}">
+												<a href="${pageContext.request.contextPath}/admin/viewSupplier/${supplier.supplierId}">
 													<img src="${pageContext.request.contextPath}/resources/images/viewIcon.png" class="iconStyle" />
 												</a>
 											</td>

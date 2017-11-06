@@ -44,7 +44,7 @@ public class productController
 	@Autowired
 	SupplierDao supplierDao;
 	
-	@RequestMapping(value="/product", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/product", method=RequestMethod.GET)
 	public String showProduct(Model m)
 	{
 		String pageTitle = "BookZone - Product";
@@ -80,7 +80,7 @@ public class productController
 		return suppliersList;
 	}
 	
-	@RequestMapping(value="AddProduct", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/AddProduct", method=RequestMethod.POST)
 	public String addProduct(@ModelAttribute("product")Product product, HttpServletRequest request, @RequestParam("pimage")MultipartFile fileDetail, Model m)
 	{
 		String pageTitle = "BookZone - Product";
@@ -125,7 +125,7 @@ public class productController
 		return "product";
 	}
 	
-	@RequestMapping(value="updateProduct/{productId}", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/updateProduct/{productId}", method=RequestMethod.GET)
 	public String updateProduct(@PathVariable("productId")int productId, Model m)
 	{
 		String pageTitle = "BookZone - Product Update";
@@ -139,7 +139,7 @@ public class productController
 		return "updateProduct";
 	}
 	
-	@RequestMapping(value="UpdateProduct", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/UpdateProduct", method=RequestMethod.POST)
 	public String updateMyProduct(@ModelAttribute("product")Product product, @RequestParam("pimage")MultipartFile fileDetail, Model m)
 	{
 		String pageTitle = "BookZone - Product";
@@ -176,7 +176,7 @@ public class productController
 		return "product";
 	}
 	
-	@RequestMapping(value="/deleteProduct/{productId}", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/deleteProduct/{productId}", method=RequestMethod.GET)
 	public String deleteProduct(@PathVariable("productId")int productId, Model m)
 	{
 		String pageTitle = "BookZone - Product";

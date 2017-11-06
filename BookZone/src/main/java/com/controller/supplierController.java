@@ -19,7 +19,7 @@ public class supplierController
 	@Autowired
 	SupplierDao supplierDao;
 	
-	@RequestMapping(value="/supplier", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/supplier", method=RequestMethod.GET)
 	public String showSupplier(Model m)
 	{
 		String pageTitle = "BookZone - Supplier";
@@ -31,7 +31,7 @@ public class supplierController
 		return "supplier";
 	}
 	
-	@RequestMapping(value="AddSupplier", method=RequestMethod.POST)
+	@RequestMapping(value="/adminAddSupplier", method=RequestMethod.POST)
 	public String addSupplier(@ModelAttribute("supplier")Supplier supplier, Model m)
 	{
 		String pageTitle = "BookZone - Supplier";
@@ -44,7 +44,7 @@ public class supplierController
 		return "supplier";
 	}
 	
-	@RequestMapping(value="updateSupplier/{supplierId}", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/updateSupplier/{supplierId}", method=RequestMethod.GET)
 	public String updateSupplier(@PathVariable("supplierId")int supplierId, Model m)
 	{
 		String pageTitle = "BookZone - Supplier Update";
@@ -56,7 +56,7 @@ public class supplierController
 		return "updateSupplier";
 	}
 	
-	@RequestMapping(value="UpdateSupplier", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/UpdateSupplier", method=RequestMethod.POST)
 	public String updateMySupplier(@ModelAttribute("supplier")Supplier supplier, Model m)
 	{
 		String pageTitle = "BookZone - Supplier";
@@ -69,7 +69,7 @@ public class supplierController
 		return "supplier";
 	}
 	
-	@RequestMapping(value="/deleteSupplier/{supplierId}", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/deleteSupplier/{supplierId}", method=RequestMethod.GET)
 	public String deleteSupplier(@PathVariable("supplierId")int supplierId, Model m)
 	{
 		String pageTitle = "BookZone - Supplier";
@@ -83,7 +83,7 @@ public class supplierController
 		return "supplier";
 	}
 	
-	@RequestMapping(value="/viewSupplier/{supplierId}", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/viewSupplier/{supplierId}", method=RequestMethod.GET)
 	public String viewSupplier(@PathVariable("supplierId")int supplierId, Model m)
 	{
 		String pageTitle = "BookZone - Supplier Detail";

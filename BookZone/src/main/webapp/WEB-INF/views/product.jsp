@@ -18,7 +18,7 @@
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="tab1category">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<form:form action="${pageContext.request.contextPath}/AddProduct" modelAttribute="product" enctype="multipart/form-data">
+							<form:form action="${pageContext.request.contextPath}/admin/AddProduct" modelAttribute="product" enctype="multipart/form-data">
 								<div class="clear spaces10"></div>
 								<b class="formTitle" align="center">Add Product</b>
 								<div class="clear spaces10"></div>
@@ -92,11 +92,11 @@
 											<td>${product.stock}</td>
 											<td><img src="${pageContext.request.contextPath}/resources/images/products/${product.productId}.jpg" class="productThumb" /></td>
 											<td>
-												<a href="${pageContext.request.contextPath}/updateProduct/${product.productId}">
+												<a href="${pageContext.request.contextPath}/admin/updateProduct/${product.productId}">
 													<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />
 												</a>
 												&nbsp;&nbsp;&nbsp;
-												<a href="${pageContext.request.contextPath}/deleteProduct/${product.productId}">
+												<a href="${pageContext.request.contextPath}/admin/deleteProduct/${product.productId}">
 													<img src="${pageContext.request.contextPath}/resources/images/deleteIcon.png" class="iconStyle" />
 												</a>
 												&nbsp;&nbsp;&nbsp;

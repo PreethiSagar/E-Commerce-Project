@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.Dao.CategoryDao;
+import com.Dao.OrderDao;
 import com.Dao.ProductDao;
 import com.Dao.SupplierDao;
 import com.Dao.UserDao;
 import com.Dao.CartDao;
 import com.model.Cart;
+import com.model.Orders;
 import com.model.Product;
 import com.model.User;
 
@@ -46,6 +49,9 @@ public class cartController
 	@Autowired
 	CartDao cartDao;
 	
+	@Autowired
+	OrderDao orderDao;
+	
 	@RequestMapping(value="/MyCart", method=RequestMethod.GET)
 	public String myCart(HttpSession session,Model m)
 	{
@@ -63,6 +69,7 @@ public class cartController
 		String pageTitle = "BookZone - My Cart";
 		m.addAttribute("pageTitle", pageTitle);
 		int cartId = 0;
+		int orderStatus = 0;
 		int userId = Integer.valueOf(request.getParameter("cartUserId"));
 		int productId = Integer.valueOf(request.getParameter("cartProductId"));
 		int quantity = Integer.valueOf(request.getParameter("cartQuantity"));
@@ -77,33 +84,23 @@ public class cartController
 			cm.setProduct(p);
 			cm.setCartQuantity(quantity);
 			cm.setCartPrice(price);
+			cm.setOrderStatus(orderStatus);
 			cartDao.insertCart(cm);
 		}
 		else
 		{
 			List<Cart> cartList = cartDao.getCartById(userId, productId);
-			if(cartList.isEmpty())
+			for(Cart c:cartList)
 			{
+				cartId = c.getCartId();
 				Cart cm = new Cart();
+				cm.setCartId(cartId);
 				cm.setUser(u);
 				cm.setProduct(p);
 				cm.setCartQuantity(quantity);
 				cm.setCartPrice(price);
-				cartDao.insertCart(cm);
-			}
-			else
-			{
-				for(Cart c:cartList)
-				{
-					cartId = c.getCartId();
-					Cart cm = new Cart();
-					cm.setCartId(cartId);
-					cm.setUser(u);
-					cm.setProduct(p);
-					cm.setCartQuantity(quantity);
-					cm.setCartPrice(price);
-					cartDao.updateCart(cm);
-				}
+				cm.setOrderStatus(orderStatus);
+				cartDao.updateCart(cm);
 			}
 		}
 		List<Cart> userCartList = cartDao.retrieveCart(userId);
@@ -129,25 +126,48 @@ public class cartController
 		m.addAttribute("userAddress",userAddress);
 		String userCountry = userDetails.getCountry();
 		m.addAttribute("userCountry",userCountry);
+		List<Cart> userCartList = cartDao.retrieveCart(userId);
+		m.addAttribute("userCartList", userCartList);
 		return "shipping";
 	}
 	
-	@RequestMapping(value="/invoice", method=RequestMethod.GET)
-	public String invoiceDetails(HttpSession session, Model m)
+	@RequestMapping(value="/invoice", method=RequestMethod.POST)
+	public String invoiceDetails(HttpServletRequest request, HttpSession session, Model m)
 	{
 		String pageTitle = "BookZone - Invoice";
 		m.addAttribute("pageTitle", pageTitle);
 		int userId = (Integer)session.getAttribute("userId");
+		User u = userDao.getUser(userId);
+		String paymentMode = String.valueOf(request.getParameter("paymentMode"));
+		double orderAmount = Double.valueOf(request.getParameter("orderAmount"));
+		Orders os = new Orders();
+		os.setUser(u);
+		os.setOrderDate(new Date());
+		os.setPaymentMode(paymentMode);
+		os.setOrderAmount(orderAmount);
+		orderDao.createOrder(os);		
 		List<Cart> userCartList = cartDao.retrieveCart(userId);
 		m.addAttribute("userCartList", userCartList);
 		return "invoice";
 	}
 	
 	@RequestMapping(value="/ack", method=RequestMethod.GET)
-	public String ackDetails(Model m)
+	public String ackDetails(HttpSession session, Model m)
 	{
 		String pageTitle = "BookZone - Thank You";
 		m.addAttribute("pageTitle", pageTitle);
+		int userId = (Integer)session.getAttribute("userId");
+		List<Cart> userCartList = cartDao.retrieveCart(userId);
+		int cartId = 0;
+		int orderStatus = 1;
+		for(Cart c:userCartList)
+		{
+			cartId = c.getCartId();
+			Cart cm = new Cart();
+			cm.setCartId(cartId);
+			cm.setOrderStatus(orderStatus);
+			cartDao.updateCart(cm);
+		}
 		return "acknowledgement";
 	}
 }

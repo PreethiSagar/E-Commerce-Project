@@ -18,7 +18,7 @@
 				<div class="tab-content">
 					<div class="tab-pane fade in active" id="tab1category">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<form:form action="${pageContext.request.contextPath}/AddCategory" modelAttribute="category">
+							<form:form action="${pageContext.request.contextPath}/admin/AddCategory" modelAttribute="category">
 								<div class="clear spaces10"></div>
 								<div class="form-group" align="center">
 									<b class="formTitle">Add Category</b>
@@ -58,15 +58,15 @@
 											<td>${category.catName }</td>
 											<td>${category.catDesc }</td>
 											<td>
-												<a href="${pageContext.request.contextPath}/updateCategory/${category.catId}">
+												<a href="${pageContext.request.contextPath}/admin/updateCategory/${category.catId}">
 													<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />
 												</a>
 												&nbsp;&nbsp;&nbsp;
-												<a href="${pageContext.request.contextPath}/deleteCategory/${category.catId}">
+												<a href="${pageContext.request.contextPath}/admin/deleteCategory/${category.catId}">
 													<img src="${pageContext.request.contextPath}/resources/images/deleteIcon.png" class="iconStyle" />
 												</a>
 												&nbsp;&nbsp;&nbsp;
-												<a href="${pageContext.request.contextPath}/viewCategory/${category.catId}">
+												<a href="${pageContext.request.contextPath}/admin/viewCategory/${category.catId}">
 													<img src="${pageContext.request.contextPath}/resources/images/viewIcon.png" class="iconStyle" />
 												</a>
 											</td>

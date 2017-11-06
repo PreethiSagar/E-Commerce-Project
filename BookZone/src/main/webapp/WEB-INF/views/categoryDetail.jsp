@@ -10,7 +10,7 @@
 	</div>
 	<div class="clear spaces20"></div>
 	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"></div>
-	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 loginContent">
+	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 detailContentBR">
 		<div class="clear spaces20"></div>
 		<div class="form-group">
 			<label class="detailTitle">Category Id:</label>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="clear spaces20"></div>
 		<div class="form-group">
-			<a href="${pageContext.request.contextPath}/category"><button class="btn btn-primary shiftRight">Back To Category</button></a>
+			<a href="${pageContext.request.contextPath}/admin/category"><button class="btn btn-primary shiftRight">Back To Category</button></a>
 		</div>
 	</div>
 	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"></div>

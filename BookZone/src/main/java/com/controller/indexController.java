@@ -5,26 +5,29 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Collection;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.Dao.CategoryDao;
+import com.Dao.ContactDao;
 import com.Dao.ProductDao;
 import com.Dao.SupplierDao;
 import com.Dao.UserDao;
 import com.model.Cart;
+import com.model.Category;
+import com.model.Contact;
 import com.model.Product;
 import com.model.User;
 
@@ -42,6 +45,9 @@ public class indexController
 	
 	@Autowired
 	SupplierDao supplierDao;
+	
+	@Autowired
+	ContactDao contactDao;
 	
 	@RequestMapping("/")
 	public String index(Model m)
@@ -121,7 +127,7 @@ public class indexController
 	}
 	
 	@RequestMapping(value="AddUser", method=RequestMethod.POST)
-	public String addUser(@ModelAttribute("user")User user, @RequestParam("uimage")MultipartFile fileDetail, Model m)
+	public String addUser(@ModelAttribute("user")User user, BindingResult result, @RequestParam("uimage")MultipartFile fileDetail, Model m)
 	{
 		String pageTitle = "BookZone - Home";
 		m.addAttribute("pageTitle", pageTitle);
@@ -167,7 +173,40 @@ public class indexController
 	{
 		String pageTitle = "BookZone - Contact Us";
 		m.addAttribute("pageTitle", pageTitle);
+		Contact contact = new Contact();
+		m.addAttribute(contact);
 		return "contactUs";
+	}
+	
+	@RequestMapping(value="/ContactFormSubmit", method=RequestMethod.POST)
+	public String contactSubmit(@ModelAttribute("contact")Contact contact, Model m)
+	{
+		String pageTitle = "BookZone - Contact Us";
+		m.addAttribute("pageTitle", pageTitle);
+		contactDao.addContact(contact);
+		Contact contact1 = new Contact();
+		m.addAttribute(contact1);
+		return "contactUs";
+	}
+	
+	@RequestMapping(value = "/admin/CustomerContact", method=RequestMethod.GET)
+	public String customerContact(Model m)
+	{ 
+		String pageTitle = "BookZone - Customer Queries";
+		m.addAttribute("pageTitle", pageTitle);
+		List<Contact> queriesList = contactDao.retrieveContact();
+		m.addAttribute("queriesList",queriesList);
+		return "customerQueries";
+	}
+	
+	@RequestMapping(value = "/admin/viewQuery/{queryId}", method=RequestMethod.GET)
+	public String queryDetail(@PathVariable("queryId")int queryId, Model m)
+	{ 
+		String pageTitle = "BookZone - Customer Query Detail";
+		m.addAttribute("pageTitle", pageTitle);
+		Contact contact = contactDao.getContact(queryId);
+		m.addAttribute(contact);
+		return "queryDetail";
 	}
 	
 	@RequestMapping(value="/PrivacyPolicy", method=RequestMethod.GET)

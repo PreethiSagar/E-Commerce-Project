@@ -5,7 +5,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
-	<form:form action="${pageContext.request.contextPath}/UpdateSupplier" modelAttribute="supplier" method="post">
+	<form:form action="${pageContext.request.contextPath}/admin/UpdateSupplier" modelAttribute="supplier" method="post">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"></div>
 			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 updateFormStyle">
@@ -28,7 +28,7 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
 					<div class="form-group">	
 					    <input type="submit" value="Update Supplier" class="btn btn-primary" />
-					<a href="${pageContext.request.contextPath}/supplier"><button class="btn btn-primary">Back To Supplier</button></a>
+					<a href="${pageContext.request.contextPath}/admin/supplier"><button class="btn btn-primary">Back To Supplier</button></a>
 					</div>
 				</div>
 				<div class="clear spaces5"></div>

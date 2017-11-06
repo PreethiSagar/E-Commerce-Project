@@ -12,26 +12,37 @@
 	</div>
 	<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 spacingWidth"></div>
 	<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" align="left">
-		<span>${product.getProductName()}</span>
-		</br>		
-		<span>${product.getProductDesc()}</span>
-		</br>		
-		<span>${product.getPrice()}</span>
-		</br>
-		<span>${category.getCatName()}</span>
-		</br>
-		<span>${supplier.getSupplierName()}</span>
-		</br>
-		<c:if test="${sessionScope.roleName == 'user'}">
-			<input type="hidden" name="cartProductId" value="${product.getProductId()}" />
-			<input type="hidden" name="cartUserId" value="${sessionScope.userId}" />
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="form-group">
-				<input name="cartQuantity" class="form-control" placeholder="Quantity" />
+				<span class="productDetailTitle">${product.getProductName()}</span>
 			</div>
-			<div class="form-group" align="center">	
+			<div class="form-group">
+				<span class="aboutUsDataContent">${product.getProductDesc()}</span>
+			</div>	
+			<div class="form-group">
+				<label class="detailTitle">Category:</label>
+				<label class="detailContent">${category.getCatName()}</label>
+			</div><div class="form-group">
+				<label class="detailTitle">Supplier:</label>
+				<label class="detailContent">${supplier.getSupplierName()}</label>
+			</div>
+			<div class="form-group">
+				<span class="productDetailTitle">&#8377;${product.getPrice()}</span>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="clear spaces40"></div>
+			<c:if test="${sessionScope.roleName == 'user'}">
+				<input type="hidden" name="cartProductId" value="${product.getProductId()}" />
+				<input type="hidden" name="cartUserId" value="${sessionScope.userId}" />
+				<div class="form-group">
+					<input name="cartQuantity" class="form-control" placeholder="Quantity" required />
+				</div>
+				<div class="form-group" align="left">	
 					<input type="submit" value="Add to Cart" class="btn btn-primary" />
-			</div>
-		</c:if>
+				</div>
+			</c:if>
+		</div>
 	</div>
 	</form>
 	<div class="clear spaces10"></div>

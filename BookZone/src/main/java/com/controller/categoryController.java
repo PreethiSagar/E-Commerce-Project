@@ -17,7 +17,7 @@ public class categoryController
 	@Autowired
 	CategoryDao categoryDao;
 	
-	@RequestMapping(value="/category", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/category", method=RequestMethod.GET)
 	public String showCategory(Model m)
 	{
 		String pageTitle = "BookZone - Category";
@@ -29,7 +29,7 @@ public class categoryController
 		return "category";
 	}
 	
-	@RequestMapping(value="AddCategory", method=RequestMethod.POST)
+	@RequestMapping(value="/adminAddCategory", method=RequestMethod.POST)
 	public String addCategory(@ModelAttribute("category")Category category, Model m)
 	{
 		String pageTitle = "BookZone - Category";
@@ -42,7 +42,7 @@ public class categoryController
 		return "category";
 	}
 	
-	@RequestMapping(value="updateCategory/{catId}", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/updateCategory/{catId}", method=RequestMethod.GET)
 	public String updateCategory(@PathVariable("catId")int catId, Model m)
 	{
 		String pageTitle = "BookZone - Category Update";
@@ -54,7 +54,7 @@ public class categoryController
 		return "updateCategory";
 	}
 	
-	@RequestMapping(value="UpdateCategory", method=RequestMethod.POST)
+	@RequestMapping(value="/admin/UpdateCategory", method=RequestMethod.POST)
 	public String updateMyCategory(@ModelAttribute("category")Category category, Model m)
 	{
 		String pageTitle = "BookZone - Category";
@@ -67,7 +67,7 @@ public class categoryController
 		return "category";
 	}
 	
-	@RequestMapping(value="/deleteCategory/{catId}", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/deleteCategory/{catId}", method=RequestMethod.GET)
 	public String deleteCategory(@PathVariable("catId")int catId, Model m)
 	{
 		String pageTitle = "BookZone - Category";
@@ -81,7 +81,7 @@ public class categoryController
 		return "category";
 	}	
 	
-	@RequestMapping(value="/viewCategory/{catId}", method=RequestMethod.GET)
+	@RequestMapping(value="/admin/viewCategory/{catId}", method=RequestMethod.GET)
 	public String viewCategory(@PathVariable("catId")int catId, Model m)
 	{
 		String pageTitle = "BookZone - Category Detail";

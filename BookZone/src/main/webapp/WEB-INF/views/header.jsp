@@ -50,9 +50,10 @@
 					<li>
 						<a class="dropdown-toggle navbarTitleStyle" data-toggle="dropdown" href="#">Admin Roles<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/category">Manage Categories</a></li>
-							<li><a href="${pageContext.request.contextPath}/supplier">Manage Suppliers</a></li>
-							<li><a href="${pageContext.request.contextPath}/product">Manage Products</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/category">Manage Categories</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/supplier">Manage Suppliers</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/product">Manage Products</a></li>
+							<li><a href="${pageContext.request.contextPath}/admin/CustomerContact">Customer Queries</a></li>
 						</ul>
 					</li>
 					</c:if>
