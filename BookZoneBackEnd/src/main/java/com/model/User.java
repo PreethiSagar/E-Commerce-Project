@@ -1,9 +1,15 @@
 package com.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.*;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -15,22 +21,25 @@ public class User implements Serializable
 	@Id
 	@GeneratedValue
 	private int userid;
-	@Email
-	@Column(unique = true, nullable = false)
+	@NotEmpty(message = "Please enter your email.")
+	@Email(message = "Please enter valid email.")
+	@Column(unique = true)
 	private String email;
-	@NotEmpty
+	@NotEmpty(message = "Please enter your name.")
 	private String name;
-	@Column(unique = true, nullable = false)
+	@NotEmpty(message = "Please enter username.")
+	@Column(unique = true)
 	private String username;
-	@NotEmpty
-	@Size(min = 10, max = 10)
+	@NotEmpty(message = "Please enter your mobile number.")
+	@Size(min = 10, max = 10, message="Please enter valid 10 digit mobile number.")
 	private String phone;
-	@NotEmpty
+	@NotEmpty(message = "Please enter your address.")
 	private String address;
-	@NotEmpty
+	@NotEmpty(message = "Please enter password.")
+	@Size(min = 5, max = 15, message = "Your password must between 5 and 15 characters")
 	private String password;
 	private String role;
-	@NotEmpty
+	@NotEmpty(message = "Please enter your country.")
 	private String country;
 	private String userimage;
 	private boolean enabled;

@@ -1,7 +1,11 @@
 package com.model;
 
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -11,8 +15,19 @@ public class Product
 	@Id
 	@GeneratedValue
 	int productId;
-	String productName, productDesc, imageName;
-	int stock, price, catId, supplierId;
+	@NotEmpty(message = "Please enter product name.")
+	String productName;
+	@NotEmpty(message = "Please enter product description.")
+	String productDesc;
+	String imageName;
+	@NotEmpty(message = "Please enter stock number.")
+	int stock;
+	@NotEmpty(message = "Please enter product price.")
+	int price;
+	@NotEmpty(message = "Please choose a category.")
+	int catId;
+	@NotEmpty(message = "Please choose a supplier.")
+	int supplierId;
 	
 	@Transient
 	MultipartFile pimage;	

@@ -1,6 +1,9 @@
 package com.model;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table
@@ -9,7 +12,10 @@ public class Category
 	@Id
 	@GeneratedValue
 	int catId;
-	String catName,catDesc;
+	@NotEmpty(message = "Please enter category name.")
+	String catName;
+	@NotEmpty(message = "Please enter category description.")
+	String catDesc;
 	
 	public int getCatId() {
 		return catId;

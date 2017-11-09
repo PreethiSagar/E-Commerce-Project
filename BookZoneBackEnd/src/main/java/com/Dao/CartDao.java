@@ -11,4 +11,5 @@ public interface CartDao
 	public List<Cart> retrieveCart(int userId);
 	public List<Cart> getCartById(int userId, int productId);
 	public List<Cart> checkCartExist(int userId, int productId);
+	public Cart getCart(int cartId);
 }

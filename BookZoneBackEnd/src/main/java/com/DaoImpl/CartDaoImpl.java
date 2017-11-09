@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.Dao.CartDao;
 import com.model.Cart;
+import com.model.Category;
 
 @Repository("cartDAO")
 public class CartDaoImpl implements CartDao 
@@ -110,5 +111,13 @@ public class CartDaoImpl implements CartDao
 			
 		}
 		return cr;
+	}
+	
+	public Cart getCart(int cartId) 
+	{
+		Session session = sessionFactory.openSession();
+		Cart cart = (Cart)session.get(Cart.class,cartId);
+		session.close();
+		return cart;
 	}
 }

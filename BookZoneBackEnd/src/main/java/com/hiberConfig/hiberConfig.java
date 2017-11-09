@@ -30,7 +30,7 @@ public class hiberConfig
 		System.out.println("Hibernate initiated...");
 		DriverManagerDataSource dt = new DriverManagerDataSource();
 		dt.setDriverClassName("org.h2.Driver");
-		dt.setUrl("jdbc:h2:tcp://localhost/~/bookzone");
+		dt.setUrl("jdbc:h2:tcp://localhost/~/BookZoneDB");
 		dt.setUsername("sa");
 		dt.setPassword("");
 		System.out.println("Connection established...");
