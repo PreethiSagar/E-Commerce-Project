@@ -294,3 +294,16 @@
     font-size: 35px;
     font-style: italic;
 }
+.descMaxWidth
+{
+	max-width: 400px !important;
+}
+.scrollBar
+{
+	height: 350px;
+	overflow-y: scroll;
+}
+.error
+{
+	color: #CA0101 !important;
+}
