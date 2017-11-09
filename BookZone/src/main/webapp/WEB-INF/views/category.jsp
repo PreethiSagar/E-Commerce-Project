@@ -15,10 +15,10 @@
 				</ul>
 			</div>
 			<div class="panel-body">
-				<div class="tab-content">
+				<div class="tab-content scrollBar">
 					<div class="tab-pane fade in active" id="tab1category">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<form:form action="${pageContext.request.contextPath}/admin/AddCategory" modelAttribute="category">
+							<form:form action="${pageContext.request.contextPath}/admin/AddCategory" name="categoryForm" id="categoryForm" modelAttribute="category">
 								<div class="clear spaces10"></div>
 								<div class="form-group" align="center">
 									<b class="formTitle">Add Category</b>
@@ -27,10 +27,12 @@
 								<div class="form-group">
 									<label>Category Name:</label>
 									<form:input path="catName" class="form-control" placeholder="Category Name" />
+									<form:errors path="catName" cssStyle="color:red"></form:errors>
 								</div>
 								<div class="form-group">
 									<label>Category Description:</label>
 									<form:textarea path="catDesc" rows="3" class="form-control" placeholder="Category Description" />
+									<form:errors path="catDesc" cssStyle="color:red"></form:errors>
 								</div>
 								<div class="form-group" align="center">	
 									<input type="submit" value="Add Category" class="btn btn-primary" />
@@ -56,7 +58,7 @@
 									<c:forEach items="${categoryList}" var="category">
 										<tr class="tableContent">
 											<td>${category.catName }</td>
-											<td>${category.catDesc }</td>
+											<td class="descMaxWidth">${category.catDesc }</td>
 											<td>
 												<a href="${pageContext.request.contextPath}/admin/updateCategory/${category.catId}">
 													<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />

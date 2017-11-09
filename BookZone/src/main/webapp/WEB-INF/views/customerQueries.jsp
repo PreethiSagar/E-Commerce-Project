@@ -7,7 +7,7 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
 	<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
 	<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive scrollBar">
 			<table class="table table-hover" align="center">
 				<tr class="tableHead">
 					<th>Customer Name</th>
@@ -18,7 +18,7 @@
 				</tr>
 				<c:if test="${empty queriesList}">
 					<tr class="tableContent">
-						<td colspan="4" align="center">No Queries from Customers yet.</td>
+						<td colspan="5" align="center">No Queries from Customers yet.</td>
 					</tr>
 				</c:if>
 				<c:if test="${!empty queriesList}">

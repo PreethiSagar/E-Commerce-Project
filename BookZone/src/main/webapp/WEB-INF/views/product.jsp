@@ -10,15 +10,15 @@
 		<div class="panel with-nav-tabs panel-default">
 			<div class="panel-heading">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1category" data-toggle="tab">Add Category</a></li>
-					<li><a href="#tab2category" data-toggle="tab">List Category</a></li>
+					<li class="active"><a href="#tab1category" data-toggle="tab">Add Product</a></li>
+					<li><a href="#tab2category" data-toggle="tab">List Product</a></li>
 				</ul>
 			</div>
 			<div class="panel-body">
-				<div class="tab-content">
+				<div class="tab-content scrollBar">
 					<div class="tab-pane fade in active" id="tab1category">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<form:form action="${pageContext.request.contextPath}/admin/AddProduct" modelAttribute="product" enctype="multipart/form-data">
+							<form:form action="${pageContext.request.contextPath}/admin/AddProduct" name="productForm" id="productForm" modelAttribute="product" enctype="multipart/form-data">
 								<div class="clear spaces10"></div>
 								<b class="formTitle" align="center">Add Product</b>
 								<div class="clear spaces10"></div>
@@ -26,14 +26,17 @@
 									<div class="form-group">
 									    <label>Product Name:</label>
 										<form:input path="productName" class="form-control" placeholder="Product Name" />
+									<form:errors path="productName" cssStyle="color:red"></form:errors>
 									</div>
 									<div class="form-group">
 									    <label>Product Price:</label>
 										<form:input path="price" class="form-control" placeholder="Product Price" />
+									<form:errors path="price" cssStyle="color:red"></form:errors>
 									</div>
 									<div class="form-group">
 									    <label>Product Stock:</label>
 										<form:input path="stock" class="form-control" placeholder="Product Stock" />
+										<form:errors path="stock" cssStyle="color:red"></form:errors>
 									</div>
 									<div class="form-group">
 									    <label>Product Image:</label>
@@ -43,21 +46,24 @@
 								<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 									<div class="form-group">
 									    <label>Category Id:</label>
-										<form:select path="catId" class="form-control">
+										<form:select path="catId" id="catId" class="form-control">
 											<form:option value="0" label="----- Select Category -----"></form:option>
 											<form:options items="${categoryList}"/>
 										</form:select>
+										<form:errors path="catId" cssStyle="color:red"></form:errors>
 									</div>
 									<div class="form-group">
 									    <label>Supplier Id:</label>
-										<form:select path="supplierId" class="form-control">
+										<form:select path="supplierId" id="supplierId" class="form-control">
 											<form:option value="0" label="----- Select Supplier -----"></form:option>
 											<form:options items="${supplierList}"/>
 										</form:select>
+										<form:errors path="supplierId" cssStyle="color:red"></form:errors>
 									</div>
 									<div class="form-group">
 									    <label>Product Description:</label>
 										<form:textarea path="productDesc" rows="7" class="form-control" placeholder="Product Description" />
+										<form:errors path="productDesc" cssStyle="color:red"></form:errors>
 									</div>
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">

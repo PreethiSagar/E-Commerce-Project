@@ -21,8 +21,12 @@
 			<c:if test="${!empty userCartList}">
 			<c:forEach items="${userCartList}" var="cart">
 				<tr class="tableContent">
-					<td><img src="${pageContext.request.contextPath}/resources/images/no_image.jpeg" class="productThumb" /></td>
-					<td>${cart.product.productName}</td>
+					<td><img src="${pageContext.request.contextPath}/resources/images/products/${cart.product.productId}.jpg" class="productThumb" /></td>
+					<td>
+						${cart.product.productName}
+						<br>
+						<a href="${pageContext.request.contextPath}/viewProduct/${cart.product.productId}">View Details</a>
+					</td>
 					<td>${cart.cartQuantity }</td>
 					<td>${cart.cartPrice }</td>
 					<td>

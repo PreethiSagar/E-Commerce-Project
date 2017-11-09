@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <jsp:include page="header.jsp"></jsp:include>
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
@@ -86,10 +87,10 @@
 			    			</div>
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 spaces10" align="center">
-							<span class="bookHeadContentStyle"><a href="${pageContext.request.contextPath}/viewProduct/${product.productId}">${product.productName}</a></span>
-							</br>
-							<span class="bookContentStyle">${product.productDesc}</span>
-							</br>
+							<span class="bookHeadContentStyle">${product.productName}</span>
+							<div class="clear"></div>
+							<span class="bookContentStyle">${fn:substring(product.productDesc,0,25)}... <a href="${pageContext.request.contextPath}/viewProduct/${product.productId}">More</a></span>
+							<div class="clear"></div>
 							<span class="bookContentStyle">&#8377;${product.price}</span>
 						</div>
 					</div>

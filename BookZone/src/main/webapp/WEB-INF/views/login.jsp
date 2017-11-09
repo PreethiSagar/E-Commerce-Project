@@ -31,8 +31,15 @@
 				<form:input type="password" path="password" class="form-control" minlength="5" placeholder="Atleast 5 Characters" />
 			</div>
 			<div class="clear spaces20"></div>
-			<div class="form-group" align="center">	
-				<input type="submit" value="Login" class="btn btn-primary" />
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="form-group" align="left">	
+					<input type="submit" value="Login" class="btn btn-primary" />
+				</div>
+			</div>			
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="form-group" align="right">	
+					<a href="${pageContext.request.contextPath}/register">Need an account?</a>
+				</div>
 			</div>
 			<div class="clear spaces20"></div>
 		</form:form>

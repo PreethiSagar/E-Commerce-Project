@@ -42,8 +42,7 @@
 				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">				
 					<div class="form-group" align="left">
 						<label>Mode of Payment:</label>
-						<select name="paymentMode" class="form-control">
-							<option value="0" label="----- Mode of Payment -----"></option>
+						<select name="paymentMode" class="form-control" required>
 							<option value="COD" label="Cash on Delivery"></option>
 							<option value="CC" label="Credit Card"></option>
 							<option value="DC" label="Debit Card"></option>

@@ -15,24 +15,27 @@
 				</ul>
 			</div>
 			<div class="panel-body">
-				<div class="tab-content">
+				<div class="tab-content scrollBar">
 					<div class="tab-pane fade in active" id="tab1supplier">
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<form:form action="${pageContext.request.contextPath}/admin/AddSupplier" modelAttribute="supplier">
+							<form:form action="${pageContext.request.contextPath}/admin/AddSupplier" name="supplierForm" id="supplierForm" modelAttribute="supplier">
 								<div class="clear spaces10"></div>
 								<b class="formTitle" align="center">Add Supplier</b>
 								<div class="clear spaces10"></div>
 								<div class="form-group">
 									<label>Supplier Name:</label>
 									<form:input path="supplierName" class="form-control" placeholder="Supplier Name" />
+									<form:errors path="supplierName" cssStyle="color:red"></form:errors>
 								</div>
 								<div class="form-group">
 									<label>Supplier Address:</label>
 									<form:input path="supplierAddress" class="form-control" placeholder="Supplier Address" />
+									<form:errors path="supplierAddress" cssStyle="color:red"></form:errors>
 								</div>
 								<div class="form-group">
 									<label>Supplier Email:</label>
 									<form:input path="supplierEmail" class="form-control" placeholder="Supplier Email" />
+									<form:errors path="supplierEmail" cssStyle="color:red"></form:errors>
 								</div>
 								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
 									<div class="form-group">	

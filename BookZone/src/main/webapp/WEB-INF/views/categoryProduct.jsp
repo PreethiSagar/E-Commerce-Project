@@ -6,7 +6,19 @@
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	
+		<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12"></div>
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+			<form:form action="${pageContext.request.contextPath}/categoryProducts" modelAttribute="category">
+				<div class="form-group" align="left">
+					<form:select path="catId" class="form-control" onchange="this.form.submit();">
+						<option <c:if test="${catId eq 0}">selected="selected"</c:if> value="0">All Products</option>
+            			<c:forEach items="${categoryList}" var="category">
+            				<option <c:if test="${category.key eq catId}">selected="selected"</c:if> value="${category.key}">${category.value}</option>
+        				</c:forEach>
+					</form:select>
+				</div>
+			</form:form>
+		</div>
 		<c:forEach items="${productList}" var="product">
 		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 			<div class="view overlay hm-orange-light">

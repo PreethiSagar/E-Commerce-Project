@@ -14,6 +14,11 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"> </script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/formValidationScript.js"></script>
 <title>${pageTitle}</title>
 </head>
 <body>
@@ -47,17 +52,26 @@
 					<li><a href="${pageContext.request.contextPath}/MyCart"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;My Cart</a></li>
 					</c:if>	
 					<c:if test = "${sessionScope.roleName == 'admin'}">
-					<li>
-						<a class="dropdown-toggle navbarTitleStyle" data-toggle="dropdown" href="#">Admin Roles<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="${pageContext.request.contextPath}/admin/category">Manage Categories</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/supplier">Manage Suppliers</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/product">Manage Products</a></li>
-							<li><a href="${pageContext.request.contextPath}/admin/CustomerContact">Customer Queries</a></li>
-						</ul>
-					</li>
-					</c:if>
-					<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+						<li>
+							<a class="dropdown-toggle navbarTitleStyle" data-toggle="dropdown" href="#">Admin Roles<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/admin/category">Manage Categories</a></li>
+								<li><a href="${pageContext.request.contextPath}/admin/supplier">Manage Suppliers</a></li>
+								<li><a href="${pageContext.request.contextPath}/admin/product">Manage Products</a></li>
+								<li><a href="${pageContext.request.contextPath}/admin/CustomerContact">Customer Queries</a></li>
+							</ul>
+						</li>
+						</c:if>
+						<li>
+							<a class="dropdown-toggle navbarTitleStyle" data-toggle="dropdown" href="#">
+								Hi, ${sessionScope.userName}<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="${pageContext.request.contextPath}/viewProfile">My Profile</a></li>
+								<li><a href="${pageContext.request.contextPath}/myOrders">My Orders</a></li>
+								<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+							</ul>
+						</li>
 					</c:if>
 				</ul>
 			</div>

@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="header.jsp"></jsp:include>
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
@@ -9,7 +10,7 @@
 	<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12" align="center">
 		<div class="clear spaces10"></div>
 		<div class="form-group" align="left">
-			<b class="formTitle">Order Details <label class="detailContent">#OrderId</label></b>
+			<b class="formTitle">Order Details <label class="detailContent">#${orderId}</label></b>
 		</div>
 		<div class="clear spaces10"></div>
 		<div class="form-group" align="left">
@@ -19,17 +20,17 @@
 			<tr>
 				<td>
 					<label class="detailTitle">Date:</label> 
-					<label class="detailContent"></label>
+					<label class="detailContent"><fmt:formatDate value="${orderDate}" pattern="MMMM dd, YYYY" /></label>
 				</td>
 				<td>
 					<label class="detailTitle">Name/Email:</label> 
-					<label class="detailContent"></label>
+					<label class="detailContent">${userName}</label>
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<label class="detailTitle">Phone:</label> 
-					<label class="detailContent"></label>
+					<label class="detailContent">${userPhone}</label>
 				</td>
 				<td>
 					<label class="detailTitle">Estimated Delivery:</label> 
@@ -38,12 +39,24 @@
 			</tr>
 			<tr>
 				<td>
-					<label class="detailTitle">Amount</label> 
-					<label class="detailContent"></label>
+					<label class="detailTitle">Amount:</label> 
+					<label class="detailContent">&#8377;${userAmount}</label>
 				</td>
 				<td>
 					<label class="detailTitle">Mode of Payment:</label> 
-					<label class="detailContent"></label>
+					<c:if test="${userPMode == 'COD'}">
+						<c:set var="paymentMode" value="Cash On Delivery"></c:set>
+					</c:if>					
+					<c:if test="${userPMode == 'CC'}">
+						<c:set var="paymentMode" value="Credit Card"></c:set>
+					</c:if>					
+					<c:if test="${userPMode == 'DC'}">
+						<c:set var="paymentMode" value="Debit Card"></c:set>
+					</c:if>					
+					<c:if test="${userPMode == 'NB'}">
+						<c:set var="paymentMode" value="Net Banking"></c:set>
+					</c:if>					
+					<label class="detailContent">${paymentMode}</label>
 				</td>
 			</tr>
 		</table>
@@ -59,7 +72,7 @@
 			</tr>
 			<c:forEach items="${userCartList}" var="cart">
 				<tr>
-					<td><img src="${pageContext.request.contextPath}/resources/images/no_image.jpeg" class="productThumb" /></td>
+					<td><img src="${pageContext.request.contextPath}/resources/images//products/${cart.product.productId}.jpg" class="productThumb" /></td>
 					<td>${cart.cartId }</td>
 					<td>${cart.cartQuantity }</td>
 					<td>${cart.cartPrice }</td>
