@@ -7,6 +7,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,6 +16,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.BookZone.exception.ProductNotFoundException;
 import com.Dao.CategoryDao;
 import com.Dao.ProductDao;
 import com.Dao.SupplierDao;
@@ -81,22 +85,27 @@ public class productController
 	}
 	
 	@RequestMapping(value="/admin/AddProduct", method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product")Product product, HttpServletRequest request, @RequestParam("pimage")MultipartFile fileDetail, Model m)
+	public String addProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult, HttpServletRequest request, @RequestParam("pimage")MultipartFile fileDetail, Model m)
 	{
+		if (bindingResult.hasErrors()) 
+		{
+			String pageTitle = "BookZone - Product";
+			m.addAttribute("pageTitle", pageTitle);
+			Product product1 = new Product();
+			m.addAttribute(product1);
+			List<Product> listProduct = productDao.retrieveProduct();
+			m.addAttribute("productList",listProduct);
+			m.addAttribute("categoryList",this.getCategories());
+			m.addAttribute("supplierList",this.getSuppliers());
+			return "product";
+		}
 		String pageTitle = "BookZone - Product";
 		m.addAttribute("pageTitle", pageTitle);
 		productDao.addProduct(product);
 		String insertProductId = String.valueOf(product.getProductId());
 		
 		String path = "D:\\EclipseProjects\\BookZone\\src\\main\\webapp\\resources\\images\\products\\";
-		String orginalFilename = fileDetail.getOriginalFilename();
-		/*Session session = sessionFactory.openSession();
-		String imageUpdateQuery = "UPDATE Product set imageName = :imageName WHERE productId = :productId";
-		Query query = session.createQuery(imageUpdateQuery);
-		query.setParameter("imageName", orginalFilename);
-		query.setParameter("productId", insertProductId);
-		query.executeUpdate();*/
-		
+		String orginalFilename = fileDetail.getOriginalFilename();		
 		String totalFilePath = path+insertProductId+".jpg";
 		File productImage = new File(totalFilePath);
 		if(!fileDetail.isEmpty())
@@ -120,6 +129,8 @@ public class productController
 		}
 		List<Product> listProduct = productDao.retrieveProduct();
 		m.addAttribute("productList",listProduct);
+		m.addAttribute("categoryList",this.getCategories());
+		m.addAttribute("supplierList",this.getSuppliers());
 		Product product1 = new Product();
 		m.addAttribute(product1);
 		return "product";
@@ -191,11 +202,12 @@ public class productController
 	}
 	
 	@RequestMapping(value="/viewProduct/{productId}", method=RequestMethod.GET)
-	public String viewProduct(@PathVariable("productId")int productId, Model m)
+	public String viewProduct(@PathVariable("productId")int productId, Model m) throws ProductNotFoundException
 	{
 		String pageTitle = "BookZone - Product detail";
 		m.addAttribute("pageTitle", pageTitle);
 		Product product = productDao.getProduct(productId);
+		if(product == null) throw new ProductNotFoundException();
 		m.addAttribute(product);
 		int catId = product.getCatId();
 		Category category = categoryDao.getCategory(catId);
@@ -208,15 +220,30 @@ public class productController
 		return "productDetail";
 	}
 	
-	@RequestMapping(value = "/categoryProducts/{catId}", method=RequestMethod.GET)
-	public String categoryProducts(@PathVariable("catId")int catId, Model m)
+	@RequestMapping(value = "/categoryProducts", method=RequestMethod.POST)
+	public String categoryProducts(HttpServletRequest request, HttpSession session, Model m)
 	{ 
+		int catId = 0;
+		catId = Integer.valueOf(request.getParameter("catId"));
 		String pageTitle = "BookZone - Categorized Products";
 		m.addAttribute("pageTitle", pageTitle);
-		List<Product> productList = productDao.getCategoryProducts(catId);
-		m.addAttribute("productList",productList);
 		Product product1 = new Product();
 		m.addAttribute(product1);
+		Category category = new Category();
+		m.addAttribute(category);
+		if(catId == 0)
+		{
+			List<Product> listProduct = productDao.retrieveProduct();		
+			m.addAttribute("productList",listProduct);
+		}
+		else
+		{
+			List<Product> listProduct = productDao.getCategoryProducts(catId);		
+			m.addAttribute("productList",listProduct);
+		}
+		m.addAttribute("catId",catId);
+		m.addAttribute("categoryList",this.getCategories());
+		m.addAttribute("supplierList",this.getSuppliers());
 		return "categoryProduct";
 	}
 	
@@ -225,8 +252,12 @@ public class productController
 	{ 
 		String pageTitle = "BookZone - Products";
 		m.addAttribute("pageTitle", pageTitle);
+		int catId = 0;
+		m.addAttribute("catId",catId);
 		Product product = new Product();
 		m.addAttribute(product);
+		Category category = new Category();
+		m.addAttribute(category);
 		List<Product> listProduct = productDao.retrieveProduct();
 		m.addAttribute("productList",listProduct);
 		m.addAttribute("categoryList",this.getCategories());

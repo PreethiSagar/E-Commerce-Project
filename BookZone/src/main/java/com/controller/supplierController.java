@@ -1,9 +1,13 @@
 package com.controller;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +35,19 @@ public class supplierController
 		return "supplier";
 	}
 	
-	@RequestMapping(value="/adminAddSupplier", method=RequestMethod.POST)
-	public String addSupplier(@ModelAttribute("supplier")Supplier supplier, Model m)
+	@RequestMapping(value="/admin/AddSupplier", method=RequestMethod.POST)
+	public String addSupplier(@ModelAttribute("supplier") @Valid Supplier supplier, BindingResult bindingResult, Model m)
 	{
+		if (bindingResult.hasErrors()) 
+		{
+			String pageTitle = "BookZone - Supplier";
+			m.addAttribute("pageTitle", pageTitle);
+			Supplier supplier1 = new Supplier();
+			m.addAttribute(supplier1);
+			List<Supplier> listSupplier = supplierDao.retrieveSupplier();
+			m.addAttribute("supplierList",listSupplier);
+			return "supplier";
+		}
 		String pageTitle = "BookZone - Supplier";
 		m.addAttribute("pageTitle", pageTitle);
 		supplierDao.addSupplier(supplier);

@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import javax.validation.Valid;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,6 +79,7 @@ public class indexController
 		String roleName=null;
 		boolean loggedIn=false;
 		int userId=0;
+		String userName = null;
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String loggedUsername = auth.getName();
@@ -100,8 +102,10 @@ public class indexController
 		for(User u:userList)
 		{
 			userId = u.getUserid();
+			userName = u.getUsername();
 		}
 		session.setAttribute("userId", userId);
+		session.setAttribute("userName", userName);
 		session.setAttribute("loggedIn", loggedIn);
 		session.setAttribute("roleName", roleName);
 		
@@ -127,8 +131,16 @@ public class indexController
 	}
 	
 	@RequestMapping(value="AddUser", method=RequestMethod.POST)
-	public String addUser(@ModelAttribute("user")User user, BindingResult result, @RequestParam("uimage")MultipartFile fileDetail, Model m)
+	public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, @RequestParam("uimage")MultipartFile fileDetail, Model m)
 	{
+		if (bindingResult.hasErrors()) 
+		{
+			String pageTitle = "BookZone - Sign Up";
+			m.addAttribute("pageTitle", pageTitle);
+			User user1 = new User();
+			m.addAttribute(user1);
+			return "register";
+		}
 		String pageTitle = "BookZone - Home";
 		m.addAttribute("pageTitle", pageTitle);
 		userDao.addUser(user);
@@ -223,5 +235,79 @@ public class indexController
 		String pageTitle = "BookZone - Help";
 		m.addAttribute("pageTitle", pageTitle);
 		return "help";
+	}
+	
+	@RequestMapping(value = "/viewProfile", method=RequestMethod.GET)
+	public String viewProfileDetail(HttpSession session, Model m)
+	{ 
+		String pageTitle = "BookZone - Your Profile";
+		m.addAttribute("pageTitle", pageTitle);
+		
+		int userId = (Integer)session.getAttribute("userId");
+		m.addAttribute("userId",userId);
+		User userDetails = userDao.getUser(userId);
+		String userName = userDetails.getName();
+		m.addAttribute("userName",userName);
+		String userPhone = userDetails.getPhone();
+		m.addAttribute("userPhone",userPhone);
+		String userEmail = userDetails.getEmail();
+		m.addAttribute("userEmail",userEmail);
+		String userAddress = userDetails.getAddress();
+		m.addAttribute("userAddress",userAddress);
+		return "profileView";
+	}
+	
+	@RequestMapping("/updateProfile")
+	public String goToUpdateProfile(HttpSession session, Model m)
+	{
+		String pageTitle = "BookZone - Edit Profile";
+		m.addAttribute("pageTitle", pageTitle);
+		int userId = (Integer)session.getAttribute("userId");
+		User user = userDao.getUser(userId);
+		m.addAttribute(user);
+		return "editProfile";
+	}
+	
+	@RequestMapping(value="UpdateProfile", method=RequestMethod.POST)
+	public String UpdateMyProfile(@ModelAttribute("user")User user, HttpSession session, @RequestParam("uimage")MultipartFile fileDetail, Model m)
+	{
+		String pageTitle = "BookZone - Your Profile";
+		m.addAttribute("pageTitle", pageTitle);
+		userDao.updateUser(user);
+		String path = "D:\\EclipseProjects\\BookZone\\src\\main\\webapp\\resources\\images\\users\\";
+		String totalFilePath = path+String.valueOf(user.getUserid())+".jpg";
+		File userImage = new File(totalFilePath);
+		if(!fileDetail.isEmpty())
+		{
+			try
+			{
+				byte fileBuffer[] = fileDetail.getBytes();
+				FileOutputStream fos = new FileOutputStream(userImage);
+				BufferedOutputStream bs = new BufferedOutputStream(fos);
+				bs.write(fileBuffer);;
+				bs.close();
+			}
+			catch(Exception e)
+			{
+				m.addAttribute("error", e.getMessage());
+			}
+		}
+		else
+		{
+			m.addAttribute("error", "Problem in file uploading.");
+		}
+
+		int userId = (Integer)session.getAttribute("userId");
+		m.addAttribute("userId",userId);
+		User userDetails = userDao.getUser(userId);
+		String userName = userDetails.getName();
+		m.addAttribute("userName",userName);
+		String userPhone = userDetails.getPhone();
+		m.addAttribute("userPhone",userPhone);
+		String userEmail = userDetails.getEmail();
+		m.addAttribute("userEmail",userEmail);
+		String userAddress = userDetails.getAddress();
+		m.addAttribute("userAddress",userAddress);
+		return "profileView";
 	}
 }

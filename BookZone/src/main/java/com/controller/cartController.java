@@ -8,11 +8,13 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -145,7 +147,19 @@ public class cartController
 		os.setOrderDate(new Date());
 		os.setPaymentMode(paymentMode);
 		os.setOrderAmount(orderAmount);
-		orderDao.createOrder(os);		
+		orderDao.createOrder(os);	
+		int orderId = os.getOrderId();
+		Date orderDate = os.getOrderDate();
+		String userName = os.getUser().getName();
+		String userPhone = os.getUser().getPhone();
+		String userPMode = os.getPaymentMode();
+		double userAmount = os.getOrderAmount();
+		m.addAttribute("orderId", orderId);
+		m.addAttribute("orderDate", orderDate);
+		m.addAttribute("userName", userName);
+		m.addAttribute("userPhone", userPhone);
+		m.addAttribute("userPMode", userPMode);
+		m.addAttribute("userAmount", userAmount);
 		List<Cart> userCartList = cartDao.retrieveCart(userId);
 		m.addAttribute("userCartList", userCartList);
 		return "invoice";
@@ -158,16 +172,48 @@ public class cartController
 		m.addAttribute("pageTitle", pageTitle);
 		int userId = (Integer)session.getAttribute("userId");
 		List<Cart> userCartList = cartDao.retrieveCart(userId);
-		int cartId = 0;
-		int orderStatus = 1;
 		for(Cart c:userCartList)
 		{
-			cartId = c.getCartId();
+			int orderStatus = 1;
+			int cartId = c.getCartId();
+			int cartquantity = c.getCartQuantity();
+			double cartPrice = c.getCartPrice();
+			Product product = c.getProduct();
+			User user = c.getUser();
+		
 			Cart cm = new Cart();
 			cm.setCartId(cartId);
 			cm.setOrderStatus(orderStatus);
+			cm.setCartPrice(cartPrice);
+			cm.setCartQuantity(cartquantity);
+			cm.setProduct(product);
+			cm.setUser(user);
 			cartDao.updateCart(cm);
 		}
 		return "acknowledgement";
+	}
+	
+	@RequestMapping(value="/myOrders", method=RequestMethod.GET)
+	public String myOrderList(HttpSession session, Model m)
+	{
+		String pageTitle = "BookZone - Thank You";
+		m.addAttribute("pageTitle", pageTitle);
+		int userId = (Integer)session.getAttribute("userId");
+		List<Cart> completedOrdersList = orderDao.completedOrders(userId);
+		m.addAttribute("completedOrdersList", completedOrdersList);
+		return "myOrders";
+	}
+	
+	@RequestMapping(value="/admin/deleteCart/{cartId}", method=RequestMethod.GET)
+	public String deleteProduct(@PathVariable("cartId")int cartId, HttpSession session, Model m)
+	{
+		String pageTitle = "BookZone - My Cart";
+		m.addAttribute("pageTitle", pageTitle);
+		Cart cart = cartDao.getCart(cartId);
+		cartDao.deleteCart(cart);
+		int userId = (Integer)session.getAttribute("userId");
+		List<Cart> userCartList = cartDao.retrieveCart(userId);
+		m.addAttribute("userCartList", userCartList);
+		return "cart";
 	}
 }

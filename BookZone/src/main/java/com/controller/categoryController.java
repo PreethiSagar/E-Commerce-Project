@@ -1,9 +1,13 @@
 package com.controller;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +33,19 @@ public class categoryController
 		return "category";
 	}
 	
-	@RequestMapping(value="/adminAddCategory", method=RequestMethod.POST)
-	public String addCategory(@ModelAttribute("category")Category category, Model m)
+	@RequestMapping(value="/admin/AddCategory", method=RequestMethod.POST)
+	public String addCategory(@ModelAttribute("category") @Valid Category category, BindingResult bindingResult, Model m)
 	{
+		if (bindingResult.hasErrors()) 
+		{
+			String pageTitle = "BookZone - Category";
+			m.addAttribute("pageTitle", pageTitle);
+			Category category1 = new Category();
+			m.addAttribute(category1);
+			List<Category> listCategory = categoryDao.retrieveCategory();
+			m.addAttribute("categoryList",listCategory);
+			return "category";
+		}
 		String pageTitle = "BookZone - Category";
 		m.addAttribute("pageTitle", pageTitle);
 		categoryDao.addCategory(category);
