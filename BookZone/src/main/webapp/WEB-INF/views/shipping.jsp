@@ -12,7 +12,7 @@
 			<b class="formTitle">Shipping & Payment Details</b>
 		</div>
 		<div class="clear spaces10"></div>
-		<form action="${pageContext.request.contextPath}/invoice" method="post">
+		<form action="${pageContext.request.contextPath}/invoice" name="invoiceForm" id="invoiceForm" onsubmit="return validateInvoiceForm()" method="post">
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 				<div class="form-group" align="center">
 					<b class="formTitle">Shipping Address</b>
@@ -39,15 +39,35 @@
 					<b class="formTitle">Payment Mode</b>
 				</div>
 				<div class="clear spaces10"></div>	
-				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">				
-					<div class="form-group" align="left">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">		
+					<div class="error"></div>		
+					<div class="clear spaces15"></div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" align="left">
 						<label>Mode of Payment:</label>
-						<select name="paymentMode" class="form-control" required>
+						<select name="paymentMode" id="paymentMode" class="form-control" onchange="paymentModeChange()">
 							<option value="COD" label="Cash on Delivery"></option>
 							<option value="CC" label="Credit Card"></option>
 							<option value="DC" label="Debit Card"></option>
 							<option value="NB" label="Net Banking"></option>
 						</select>
+					</div>
+					<div class="creditDebitCardDetails" style="display:none;">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group" align="left">
+							<input name="cardName" id="cardName" class="form-control" placeholder="Name on Card" />
+						</div>						
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12form-group" align="left">
+							<input name="cardNumber" id="cardNumber" class="form-control" placeholder="Card Number" maxlength="16" />
+						</div>
+						<div class="clear spaces15"></div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group" align="left">
+							<input name="expireMonth" id="expireMonth" class="form-control" placeholder="MM" maxlength="2" />
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 form-group" align="left">
+							<input name="expireYear" id="expireYear" class="form-control" placeholder="YYYY" maxlength="4" />
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12form-group" align="left">
+							<input name="cvv" id="cvv" class="form-control" placeholder="CVV" maxlength="3" />
+						</div>
 					</div>
 					<c:forEach items="${userCartList}" var="cart">
 						<c:set var="grandtotal" value="${grandtotal + (cart.cartQuantity*cart.cartPrice) }"></c:set>

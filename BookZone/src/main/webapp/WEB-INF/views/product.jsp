@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <jsp:include page="header.jsp"></jsp:include>
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
@@ -96,7 +97,11 @@
 											<td>${product.productName}</td>
 											<td>${product.price}</td>
 											<td>${product.stock}</td>
-											<td><img src="${pageContext.request.contextPath}/resources/images/products/${product.productId}.jpg" class="productThumb" /></td>
+											<c:set var="productImgPath" value="${pageContext.request.contextPath}/resources/images/products/${product.productId}.jpg" />
+											<%-- <c:if test="${productImgPath.isEmpty()}">
+												<c:set var="productImgPath" value="${pageContext.request.contextPath}/resources/images/no_image.jpeg" />
+											</c:if> --%>									
+											<td><img src="${productImgPath}" class="productThumb" /></td>
 											<td>
 												<a href="${pageContext.request.contextPath}/admin/updateProduct/${product.productId}">
 													<img src="${pageContext.request.contextPath}/resources/images/editIcon.png" class="iconStyle" />

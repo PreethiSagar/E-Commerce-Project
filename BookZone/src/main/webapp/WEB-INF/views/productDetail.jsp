@@ -6,7 +6,7 @@
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
 	<div class="clear spaces10"></div>
-	<form action="${pageContext.request.contextPath}/AddCart" method="post">
+	<form action="${pageContext.request.contextPath}/AddCart" name="addCartForm" onsubmit="return validateCartForm()" method="post">
 	<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 		<img src="${pageContext.request.contextPath}/resources/images/products/${product.getProductId()}.jpg" class="productDetailImg detailBorderDtyle center-block" alt="">
 	</div>
@@ -35,12 +35,25 @@
 			<c:if test="${sessionScope.roleName == 'user'}">
 				<input type="hidden" name="cartProductId" value="${product.getProductId()}" />
 				<input type="hidden" name="cartUserId" value="${sessionScope.userId}" />
+				<input type="hidden" name="cartStock" id="cartStock" value="${product.getStock()}" />
 				<div class="form-group">
-					<input name="cartQuantity" class="form-control" placeholder="Quantity" required />
+					<input name="cartQuantity" id="cartQuantity" class="form-control" placeholder="Quantity" />
 				</div>
-				<div class="form-group" align="left">	
-					<input type="submit" value="Add to Cart" class="btn btn-primary" />
-				</div>
+				<div class="error"></div>
+				<c:if test="${product.getStock() eq 0}">
+			    	<div class="form-group">
+						<label class="detailTitle">Out Of Stock</label>
+					</div>
+			    </c:if>
+			    <c:if test="${product.getStock() ne 0}">
+			    	<div class="form-group">
+						<label class="detailTitle">Available Stock: </label>
+						<label class="detailContent">${product.getStock()}</label>
+					</div>			
+					<div class="form-group" align="left">	
+						<input type="submit" value="Add to Cart" class="btn btn-primary" />
+					</div>
+			    </c:if>	
 			</c:if>
 		</div>
 	</div>

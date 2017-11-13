@@ -49,16 +49,20 @@
 					<c:if test="${pageContext.request.userPrincipal.name!=null}">
 					<c:if test = "${sessionScope.roleName == 'user'}">
 					<li><a href="${pageContext.request.contextPath}/productList">Products</a></li>
-					<li><a href="${pageContext.request.contextPath}/MyCart"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;My Cart</a></li>
+					<li>
+						<a href="${pageContext.request.contextPath}/MyCart"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;My Cart</a>
+						<div class="notification">${sessionScope.cartCount}</div>
+					</li>
 					</c:if>	
 					<c:if test = "${sessionScope.roleName == 'admin'}">
 						<li>
 							<a class="dropdown-toggle navbarTitleStyle" data-toggle="dropdown" href="#">Admin Roles<span class="caret"></span></a>
+							<div><img src="${pageContext.request.contextPath}/resources/images/newIcon.png" class="newIconStyle" /></div>
 							<ul class="dropdown-menu">
-								<li><a href="${pageContext.request.contextPath}/admin/category">Manage Categories</a></li>
-								<li><a href="${pageContext.request.contextPath}/admin/supplier">Manage Suppliers</a></li>
-								<li><a href="${pageContext.request.contextPath}/admin/product">Manage Products</a></li>
-								<li><a href="${pageContext.request.contextPath}/admin/CustomerContact">Customer Queries</a></li>
+								<li><a href="${pageContext.request.contextPath}/admin/category">Manage Categories&nbsp;<span class="notificationFont">(${sessionScope.categoryCount})</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/admin/supplier">Manage Suppliers&nbsp;<span class="notificationFont">(${sessionScope.supplierCount})</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/admin/product">Manage Products&nbsp;<span class="notificationFont">(${sessionScope.productCount})</span></a></li>
+								<li><a href="${pageContext.request.contextPath}/admin/CustomerContact">Customer Queries&nbsp;<span class="notificationFont">(${sessionScope.contactCount})</span></a></li>
 							</ul>
 						</li>
 						</c:if>
@@ -68,7 +72,9 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="${pageContext.request.contextPath}/viewProfile">My Profile</a></li>
-								<li><a href="${pageContext.request.contextPath}/myOrders">My Orders</a></li>
+								<c:if test = "${sessionScope.roleName == 'user'}">
+									<li><a href="${pageContext.request.contextPath}/myOrders">My Orders</a></li>
+								</c:if>
 								<li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
 							</ul>
 						</li>

@@ -85,6 +85,13 @@
 			    			<div class="mask flex-center">
 			        			<p class="white-text"></p>
 			    			</div>
+			    			<c:if test="${product.stock eq 0}">
+			    				<c:set var="watermarkVar" value="watermark"></c:set>
+			    			</c:if>
+			    			<c:if test="${product.stock ne 0}">
+			    				<c:set var="watermarkVar" value="watermarkHide"></c:set>
+			    			</c:if>
+			    			<div class="${watermarkVar}">Out Of Stock</div>
 						</div>
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 spaces10" align="center">
 							<span class="bookHeadContentStyle">${product.productName}</span>

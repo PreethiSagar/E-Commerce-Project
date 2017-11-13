@@ -9,7 +9,12 @@
 	<div class="clear spaces20"></div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<h1>${errorTitle}</h1>
-		<blockquote>${errorTitle}</blockquote>
+		<span>${errorTitle}</span>
+		<ul>
+			<li>${descList1}</li>
+			<li>${descList2}</li>
+			<li>${descList3}</li>
+		</ul>
 	</div>
 	<div class="clear spaces20"></div>
 </div>

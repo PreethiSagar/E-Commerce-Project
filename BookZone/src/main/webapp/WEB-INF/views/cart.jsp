@@ -5,6 +5,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <div class="clear spaces10"></div>
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container containerMinHeight">
+	${loginData}
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
 		<table class="table table-hover" align="center">
 			<tr class="tableHead">
