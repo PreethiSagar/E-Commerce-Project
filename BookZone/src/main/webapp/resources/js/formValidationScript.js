@@ -1,5 +1,27 @@
 $(function() 
 {
+	$("#loginForm").validate({
+		rules : {
+			username : {
+				required : true
+			},
+			password : {
+				required : true
+			}
+		},
+		messages : {
+			username : {
+				required : "Please enter username"
+			},
+			password : {
+				required : "Please enter password"
+			}
+		},
+		submitHandler: function(form) {
+			form.submit();
+		}
+	});
+	
 	$("#registerForm").validate({
 		rules : {
 			name : {
@@ -222,3 +244,119 @@ $(function()
 		}
 	});
 });
+function validateCartForm()
+{
+	var cartStock = $("#cartStock").val();
+	var cartQuantity = $("#cartQuantity").val();
+	//alert(cartStock);
+	//alert(cartQuantity);
+	if (parseInt(cartQuantity)==null || parseInt(cartQuantity)=="")
+	{  
+		 //alert("Please enter the quantity");  
+		 $(".error").html("Please enter the quantity");
+		 return false;  
+	}
+	else if (parseInt(cartQuantity)=="0" || parseInt(cartQuantity)==0)
+	{  
+		 //alert("Please enter the quantity greater than zero");
+		 $(".error").html("Please enter the quantity greater than zero");  
+		 return false;  
+	}
+	else if(parseInt(cartQuantity) > parseInt(cartStock))
+	{  
+		  //alert("The quantity should be within the available stock."); 
+		  $(".error").html("The quantity should be within the available stock"); 
+		  return false;  
+	}  
+}
+function paymentModeChange()
+{
+	var paymentMode = $("#paymentMode").val();
+	//alert(paymentMode);
+	if(paymentMode == "CC" || paymentMode == "DC")
+	{
+		$(".creditDebitCardDetails").css("display", "inline-block");
+	}
+	else
+	{
+		$(".creditDebitCardDetails").css("display", "none");
+	}
+}
+function validateInvoiceForm()
+{
+	var paymentMode = $("#paymentMode").val();
+	if(paymentMode == "CC" || paymentMode == "DC")
+	{
+		var cardName = $("#cardName").val(); 
+		var cardNumber = $("#cardNumber").val(); 
+		var expireMonth = $("#expireMonth").val(); 
+		var expireYear = $("#expireYear").val(); 
+		var cvv = $("#cvv").val();
+		
+		if(cardName == null || cardName == '')
+		{
+			$(".error").html("Please enter the name of the card holder"); 
+			return false;  
+		}
+		else if(parseInt(cardNumber) == null || parseInt(cardNumber) == "" || parseInt(cardNumber) == "0" || parseInt(cardNumber) == 0)
+		{
+			$(".error").html("Please enter your card number"); 
+			return false;  
+		}
+		else if(isNaN(parseInt(cardNumber)))
+		{
+			$(".error").html("Card number need to be only numbers"); 
+			return false;  
+		}
+		else if(parseInt(cardNumber).length > '14')
+		{
+			$(".error").html("Please enter valid card number"); 
+			return false;  			
+		}
+		else if(parseInt(expireMonth) == null || parseInt(expireMonth) == "" || parseInt(expireMonth) == "0" || parseInt(expireMonth) == 0)
+		{
+			$(".error").html("Please enter the expire month"); 
+			return false; 
+		}
+		else if(isNaN(parseInt(expireMonth)))
+		{
+			$(".error").html("Expire month need to be only numbers"); 
+			return false; 
+		}
+		else if(parseInt(expireMonth) < 0 || parseInt(expireMonth) > 12)
+		{
+			$(".error").html("Please enter valid expire month from 01 to 12"); 
+			return false; 
+		}
+		else if(parseInt(expireYear) == null || parseInt(expireYear) == "" || parseInt(expireYear) == "0" || parseInt(expireYear) == 0)
+		{
+			$(".error").html("Please enter the expire year"); 
+			return false; 
+		}
+		else if(isNaN(parseInt(expireYear)))
+		{
+			$(".error").html("Expire year need to be only numbers"); 
+			return false; 
+		}
+		else if(parseInt(expireYear) < 1995 || parseInt(expireYear) > 2060)
+		{
+			$(".error").html("Please enter valid expire year from 1995 to 2060"); 
+			return false; 
+		}
+		else if(parseInt(cvv) == null || parseInt(cvv) == "" || parseInt(cvv) == "0" || parseInt(cvv) == 0)
+		{
+			$(".error").html("Please enter the cvv number"); 
+			return false;  
+		}
+		else if(isNaN(parseInt(cvv)))
+		{
+			$(".error").html("CVV need to be only numbers"); 
+			return false;  
+		}
+		else if(parseInt(cvv).length > 3)
+		{
+			$(".error").html("Please enter valid 3 digits CVV number"); 
+			return false;  			
+		}
+	}
+}

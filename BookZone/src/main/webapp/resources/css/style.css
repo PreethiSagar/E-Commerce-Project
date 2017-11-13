@@ -307,3 +307,42 @@
 {
 	color: #CA0101 !important;
 }
+.watermarkHide
+{
+	display:none;
+}
+.watermark
+{
+	display:block;
+ 	position: absolute;
+    bottom: 160px;
+    right: 150px;
+    opacity: 0.7;
+    z-index: 99;
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+}
+.notification {
+    display: block;
+    position: absolute;
+    bottom: 29px;
+    right: 78px;
+    opacity: 0.7;
+    z-index: 99;
+    color: #000000;
+    font-size: 15px;
+    font-weight: bold;
+}
+.notificationFont
+{
+	color: #CA0101 !important;
+}
+.newIconStyle
+{
+	position: absolute;
+    width: 50px;
+    height: 37px;
+    bottom: 23px;
+    left: 93px;
+}
