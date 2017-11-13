@@ -18,6 +18,9 @@ public class GlobalDefaultExceptionHandler
 		mv.addObject("pageTitle", pageTitle);
 		mv.addObject("errorTitle", "The page is not constructed!");
 		mv.addObject("errorDescription", "The page you are looking for is not available right now!");
+		mv.addObject("descList1", "");
+		mv.addObject("descList2", "");
+		mv.addObject("descList3", "");
 		return mv;
 	}
 	
@@ -29,6 +32,9 @@ public class GlobalDefaultExceptionHandler
 		mv.addObject("pageTitle", pageTitle);
 		mv.addObject("errorTitle", "The item not available!");
 		mv.addObject("errorDescription", "The item you are looking for is not available right now!");
+		mv.addObject("descList1", "");
+		mv.addObject("descList2", "");
+		mv.addObject("descList3", "");
 		return mv;
 	}
 	
@@ -38,8 +44,11 @@ public class GlobalDefaultExceptionHandler
 		String pageTitle = "BookZone - Error";
 		ModelAndView mv = new ModelAndView("errorPage");
 		mv.addObject("pageTitle", pageTitle);
-		mv.addObject("errorTitle", "Contact Your Administrator!");
-		mv.addObject("errorDescription", ex.toString());
+		mv.addObject("errorTitle", "Unable to load!!!");
+		mv.addObject("errorDescription", "This may be due to the following reasons: ");
+		mv.addObject("descList1", "The logged in session may be expired.");
+		mv.addObject("descList2", "The requested page may not be available.");
+		mv.addObject("descList3", "The form you have submitted may contain any error."+ex.getMessage());
 		return mv;
 	}
 }

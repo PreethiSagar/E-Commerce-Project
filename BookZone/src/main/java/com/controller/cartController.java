@@ -66,7 +66,7 @@ public class cartController
 	}
 	
 	@RequestMapping(value="/AddCart", method=RequestMethod.POST)
-	public String addCart(HttpServletRequest request,Model m)
+	public String addCart(HttpServletRequest request, Model m, HttpSession session)
 	{
 		String pageTitle = "BookZone - My Cart";
 		m.addAttribute("pageTitle", pageTitle);
@@ -106,6 +106,12 @@ public class cartController
 			}
 		}
 		List<Cart> userCartList = cartDao.retrieveCart(userId);
+		int cartCount = 0;
+		for(Cart cl:userCartList)
+		{
+			cartCount++;
+		}
+		session.setAttribute("cartCount", cartCount);
 		m.addAttribute("userCartList", userCartList);
 		return "cart";
 	}
@@ -188,7 +194,25 @@ public class cartController
 			cm.setCartQuantity(cartquantity);
 			cm.setProduct(product);
 			cm.setUser(user);
-			cartDao.updateCart(cm);
+			cartDao.updateCart(cm);			
+
+			int productId = c.getProduct().getProductId();
+			String productName = c.getProduct().getProductName();
+			String productDesc = c.getProduct().getProductDesc();
+			int catId = c.getProduct().getCatId();
+			int supplierId = c.getProduct().getSupplierId();
+			int productStock = c.getProduct().getStock();
+			int stockUpdate = (productStock - cartquantity);
+			int productPrice = c.getProduct().getPrice();
+			Product updateP = new Product();
+			updateP.setProductId(productId);
+			updateP.setProductName(productName);
+			updateP.setProductDesc(productDesc);
+			updateP.setCatId(catId);
+			updateP.setSupplierId(supplierId);
+			updateP.setPrice(productPrice);
+			updateP.setStock(stockUpdate);
+			productDao.updateProduct(updateP);
 		}
 		return "acknowledgement";
 	}
@@ -204,7 +228,7 @@ public class cartController
 		return "myOrders";
 	}
 	
-	@RequestMapping(value="/admin/deleteCart/{cartId}", method=RequestMethod.GET)
+	@RequestMapping(value="/deleteCart/{cartId}", method=RequestMethod.GET)
 	public String deleteProduct(@PathVariable("cartId")int cartId, HttpSession session, Model m)
 	{
 		String pageTitle = "BookZone - My Cart";
@@ -213,6 +237,12 @@ public class cartController
 		cartDao.deleteCart(cart);
 		int userId = (Integer)session.getAttribute("userId");
 		List<Cart> userCartList = cartDao.retrieveCart(userId);
+		int cartCount = 0;
+		for(Cart cl:userCartList)
+		{
+			cartCount++;
+		}
+		session.setAttribute("cartCount", cartCount);
 		m.addAttribute("userCartList", userCartList);
 		return "cart";
 	}

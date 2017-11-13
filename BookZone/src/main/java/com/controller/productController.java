@@ -14,6 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,6 +35,7 @@ import com.model.Product;
 import com.model.Supplier;
 
 @Controller
+@Scope("session")
 public class productController 
 {
 	@Autowired
@@ -85,7 +87,7 @@ public class productController
 	}
 	
 	@RequestMapping(value="/admin/AddProduct", method=RequestMethod.POST)
-	public String addProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult, HttpServletRequest request, @RequestParam("pimage")MultipartFile fileDetail, Model m)
+	public String addProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult, HttpServletRequest request, @RequestParam("pimage")MultipartFile fileDetail, Model m, HttpSession session)
 	{
 		if (bindingResult.hasErrors()) 
 		{
@@ -128,6 +130,12 @@ public class productController
 			m.addAttribute("error", "Problem in file uploading.");
 		}
 		List<Product> listProduct = productDao.retrieveProduct();
+		int productCount = 0;
+		for(Product pl:listProduct)
+		{
+			productCount++;
+		}
+		session.setAttribute("productCount", productCount);
 		m.addAttribute("productList",listProduct);
 		m.addAttribute("categoryList",this.getCategories());
 		m.addAttribute("supplierList",this.getSuppliers());
@@ -188,13 +196,19 @@ public class productController
 	}
 	
 	@RequestMapping(value="/admin/deleteProduct/{productId}", method=RequestMethod.GET)
-	public String deleteProduct(@PathVariable("productId")int productId, Model m)
+	public String deleteProduct(@PathVariable("productId")int productId, Model m, HttpSession session)
 	{
 		String pageTitle = "BookZone - Product";
 		m.addAttribute("pageTitle", pageTitle);
 		Product product = productDao.getProduct(productId);
 		productDao.deleteProduct(product);
 		List<Product> listProduct = productDao.retrieveProduct();
+		int productCount = 0;
+		for(Product pl:listProduct)
+		{
+			productCount++;
+		}
+		session.setAttribute("productCount", productCount);
 		m.addAttribute("productList",listProduct);
 		Product product1 = new Product();
 		m.addAttribute(product1);

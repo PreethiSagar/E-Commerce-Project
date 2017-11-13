@@ -2,9 +2,11 @@ package com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,7 @@ import com.Dao.CategoryDao;
 import com.model.Category;
 
 @Controller
+@Scope("session")
 public class categoryController 
 {
 	@Autowired
@@ -34,7 +37,7 @@ public class categoryController
 	}
 	
 	@RequestMapping(value="/admin/AddCategory", method=RequestMethod.POST)
-	public String addCategory(@ModelAttribute("category") @Valid Category category, BindingResult bindingResult, Model m)
+	public String addCategory(@ModelAttribute("category") @Valid Category category, BindingResult bindingResult, Model m, HttpSession session)
 	{
 		if (bindingResult.hasErrors()) 
 		{
@@ -50,6 +53,12 @@ public class categoryController
 		m.addAttribute("pageTitle", pageTitle);
 		categoryDao.addCategory(category);
 		List<Category> listCategory = categoryDao.retrieveCategory();
+		int categoryCount = 0;
+		for(Category catL:listCategory)
+		{
+			categoryCount++;
+		}
+		session.setAttribute("categoryCount", categoryCount);
 		m.addAttribute("categoryList",listCategory);
 		Category category1 = new Category();
 		m.addAttribute(category1);
@@ -82,13 +91,19 @@ public class categoryController
 	}
 	
 	@RequestMapping(value="/admin/deleteCategory/{catId}", method=RequestMethod.GET)
-	public String deleteCategory(@PathVariable("catId")int catId, Model m)
+	public String deleteCategory(@PathVariable("catId")int catId, Model m, HttpSession session)
 	{
 		String pageTitle = "BookZone - Category";
 		m.addAttribute("pageTitle", pageTitle);
 		Category category = categoryDao.getCategory(catId);
 		categoryDao.deleteCategory(category);
 		List<Category> listCategory = categoryDao.retrieveCategory();
+		int categoryCount = 0;
+		for(Category catL:listCategory)
+		{
+			categoryCount++;
+		}
+		session.setAttribute("categoryCount", categoryCount);
 		m.addAttribute("categoryList",listCategory);
 		Category category1 = new Category();
 		m.addAttribute(category1);

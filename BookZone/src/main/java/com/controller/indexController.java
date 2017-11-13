@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.Dao.CartDao;
 import com.Dao.CategoryDao;
 import com.Dao.ContactDao;
 import com.Dao.ProductDao;
@@ -30,9 +32,11 @@ import com.model.Cart;
 import com.model.Category;
 import com.model.Contact;
 import com.model.Product;
+import com.model.Supplier;
 import com.model.User;
 
 @Controller
+@Scope("session")
 public class indexController 
 {
 	@Autowired
@@ -46,6 +50,9 @@ public class indexController
 	
 	@Autowired
 	SupplierDao supplierDao;
+	
+	@Autowired
+	CartDao cartDao;
 	
 	@Autowired
 	ContactDao contactDao;
@@ -108,6 +115,41 @@ public class indexController
 		session.setAttribute("userName", userName);
 		session.setAttribute("loggedIn", loggedIn);
 		session.setAttribute("roleName", roleName);
+		List<Cart> cartList = cartDao.retrieveCart(userId);
+		int cartCount = 0;
+		for(Cart cl:cartList)
+		{
+			cartCount++;
+		}
+		session.setAttribute("cartCount", cartCount);
+		List<Category> categoryList = categoryDao.retrieveCategory();
+		int categoryCount = 0;
+		for(Category catL:categoryList)
+		{
+			categoryCount++;
+		}
+		session.setAttribute("categoryCount", categoryCount);
+		List<Supplier> supplierList = supplierDao.retrieveSupplier();
+		int supplierCount = 0;
+		for(Supplier sl:supplierList)
+		{
+			supplierCount++;
+		}
+		session.setAttribute("supplierCount", supplierCount);
+		List<Product> productList = productDao.retrieveProduct();
+		int productCount = 0;
+		for(Product pl:productList)
+		{
+			productCount++;
+		}
+		session.setAttribute("productCount", productCount);
+		List<Contact> contactList = contactDao.retrieveContact();
+		int contactCount = 0;
+		for(Contact conl:contactList)
+		{
+			contactCount++;
+		}
+		session.setAttribute("contactCount", contactCount);
 		
 		return "redirect:/";
 	}
@@ -191,13 +233,20 @@ public class indexController
 	}
 	
 	@RequestMapping(value="/ContactFormSubmit", method=RequestMethod.POST)
-	public String contactSubmit(@ModelAttribute("contact")Contact contact, Model m)
+	public String contactSubmit(@ModelAttribute("contact")Contact contact, Model m, HttpSession session)
 	{
 		String pageTitle = "BookZone - Contact Us";
 		m.addAttribute("pageTitle", pageTitle);
 		contactDao.addContact(contact);
 		Contact contact1 = new Contact();
 		m.addAttribute(contact1);
+		List<Contact> contactList = contactDao.retrieveContact();
+		int contactCount = 0;
+		for(Contact conl:contactList)
+		{
+			contactCount++;
+		}
+		session.setAttribute("contactCount", contactCount);
 		return "contactUs";
 	}
 	

@@ -2,9 +2,11 @@ package com.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,11 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.Dao.SupplierDao;
-import com.model.Category;
-import com.model.Product;
 import com.model.Supplier;
 
 @Controller
+@Scope("session")
 public class supplierController 
 {
 	@Autowired
@@ -36,7 +37,7 @@ public class supplierController
 	}
 	
 	@RequestMapping(value="/admin/AddSupplier", method=RequestMethod.POST)
-	public String addSupplier(@ModelAttribute("supplier") @Valid Supplier supplier, BindingResult bindingResult, Model m)
+	public String addSupplier(@ModelAttribute("supplier") @Valid Supplier supplier, BindingResult bindingResult, Model m, HttpSession session)
 	{
 		if (bindingResult.hasErrors()) 
 		{
@@ -45,6 +46,12 @@ public class supplierController
 			Supplier supplier1 = new Supplier();
 			m.addAttribute(supplier1);
 			List<Supplier> listSupplier = supplierDao.retrieveSupplier();
+			int supplierCount = 0;
+			for(Supplier sl:listSupplier)
+			{
+				supplierCount++;
+			}
+			session.setAttribute("supplierCount", supplierCount);
 			m.addAttribute("supplierList",listSupplier);
 			return "supplier";
 		}
@@ -84,13 +91,19 @@ public class supplierController
 	}
 	
 	@RequestMapping(value="/admin/deleteSupplier/{supplierId}", method=RequestMethod.GET)
-	public String deleteSupplier(@PathVariable("supplierId")int supplierId, Model m)
+	public String deleteSupplier(@PathVariable("supplierId")int supplierId, Model m, HttpSession session)
 	{
 		String pageTitle = "BookZone - Supplier";
 		m.addAttribute("pageTitle", pageTitle);
 		Supplier supplier = supplierDao.getSupplier(supplierId);
 		supplierDao.deleteSupplier(supplier);
 		List<Supplier> listSupplier = supplierDao.retrieveSupplier();
+		int supplierCount = 0;
+		for(Supplier sl:listSupplier)
+		{
+			supplierCount++;
+		}
+		session.setAttribute("supplierCount", supplierCount);
 		m.addAttribute("supplierList",listSupplier);
 		Supplier supplier1 = new Supplier();
 		m.addAttribute(supplier1);
