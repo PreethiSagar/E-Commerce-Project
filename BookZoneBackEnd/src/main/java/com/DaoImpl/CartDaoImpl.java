@@ -1,5 +1,6 @@
 package com.DaoImpl;
 
+import java.sql.Statement;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -12,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.Dao.CartDao;
 import com.model.Cart;
-import com.model.Category;
 
 @Repository("cartDAO")
 public class CartDaoImpl implements CartDao 

@@ -12,9 +12,7 @@ public class Category
 	@Id
 	@GeneratedValue
 	int catId;
-	@NotEmpty(message = "Please enter category name.")
 	String catName;
-	@NotEmpty(message = "Please enter category description.")
 	String catDesc;
 	
 	public int getCatId() {

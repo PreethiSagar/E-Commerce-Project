@@ -14,17 +14,10 @@ public class Contact
 	@Id
 	@GeneratedValue
 	private int contactId;
-	@NotEmpty(message = "Please enter your name.")
 	private String contactName;
-	@NotEmpty(message = "Please enter your email.")
-	@Email(message = "Please enter valid email.")
 	private String contactEmail;
-	@NotEmpty(message = "Please enter your mobile number.")
-	@Size(min = 10, max = 10, message="Please enter valid 10 digit mobile number.")
 	private String contactNumber;
-	@NotEmpty(message = "Please enter title.")
 	private String queryTitle;
-	@NotEmpty(message = "Please enter your message.")
 	private String queryMessage;
 	
 	public int getContactId() {

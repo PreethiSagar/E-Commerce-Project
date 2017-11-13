@@ -15,12 +15,8 @@ public class Supplier
 	@Id
 	@GeneratedValue
 	int supplierId;
-	@NotEmpty(message = "Please enter supplier name.")
 	String supplierName;
-	@NotEmpty(message = "Please enter supplier address.")
 	String supplierAddress;
-	@NotEmpty(message = "Please enter email.")
-	@Email(message = "Please enter valid email.")
 	String supplierEmail;
 	public int getSupplierId() {
 		return supplierId;

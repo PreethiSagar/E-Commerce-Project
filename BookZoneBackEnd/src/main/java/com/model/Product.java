@@ -15,18 +15,12 @@ public class Product
 	@Id
 	@GeneratedValue
 	int productId;
-	@NotEmpty(message = "Please enter product name.")
 	String productName;
-	@NotEmpty(message = "Please enter product description.")
 	String productDesc;
 	String imageName;
-	@NotEmpty(message = "Please enter stock number.")
 	int stock;
-	@NotEmpty(message = "Please enter product price.")
 	int price;
-	@NotEmpty(message = "Please choose a category.")
 	int catId;
-	@NotEmpty(message = "Please choose a supplier.")
 	int supplierId;
 	
 	@Transient

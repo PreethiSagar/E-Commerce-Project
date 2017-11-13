@@ -21,25 +21,15 @@ public class User implements Serializable
 	@Id
 	@GeneratedValue
 	private int userid;
-	@NotEmpty(message = "Please enter your email.")
-	@Email(message = "Please enter valid email.")
 	@Column(unique = true)
 	private String email;
-	@NotEmpty(message = "Please enter your name.")
 	private String name;
-	@NotEmpty(message = "Please enter username.")
 	@Column(unique = true)
 	private String username;
-	@NotEmpty(message = "Please enter your mobile number.")
-	@Size(min = 10, max = 10, message="Please enter valid 10 digit mobile number.")
 	private String phone;
-	@NotEmpty(message = "Please enter your address.")
 	private String address;
-	@NotEmpty(message = "Please enter password.")
-	@Size(min = 5, max = 15, message = "Your password must between 5 and 15 characters")
 	private String password;
 	private String role;
-	@NotEmpty(message = "Please enter your country.")
 	private String country;
 	private String userimage;
 	private boolean enabled;
